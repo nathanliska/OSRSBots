@@ -14,6 +14,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 
+import hoWoodcutter.util.Trees;
+
 public class hoWoodcutterGUI extends JFrame {
 
 	private hoWoodcutter context;
