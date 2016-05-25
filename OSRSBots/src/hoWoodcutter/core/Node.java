@@ -5,24 +5,25 @@ import org.dreambot.api.script.AbstractScript;
 
 public abstract class Node {
 	
-	//Script instance to use inside of subclasses.
+	//Script instance to use inside of subclasses
 	public AbstractScript script;
 	
-	//Node constructor takes the script argument.
+	//Node constructor takes the script argument
 	public Node(AbstractScript _script) {
 		this.script = _script;
 	}
 	
-	//Delays node 100-500ms.
+	//Delays node 100-500ms
 	public int delay() {
 		return (int)Calculations.random(100, 500);
 	}
 	
-	//Return a string 
+	//Return a string
 	public String status() {
 		return "";
 	}
 	
+	//Return a priority integer (the higher the better)
 	public int priority() {
 		return 0;
 	}
