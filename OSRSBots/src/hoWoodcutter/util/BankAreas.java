@@ -4,8 +4,8 @@ import org.dreambot.api.methods.map.Area;
 
 public enum BankAreas {
 	
-	BANK_VARROCK_EAST(new Area()),
-	BANK_VARROCK_WEST(new Area());
+	BANK_VARROCK_EAST("Varrock East", new Area()),
+	BANK_VARROCK_WEST("Varrock West", new Area());
 	
 	//COMMENTED FOR TESTING.
 	
@@ -26,10 +26,16 @@ public enum BankAreas {
 	BANK_SEERS(new Area(2720, 3490, 2730, 3500, 0)),
 	*/
 	
+	private String stringArea;
 	private Area area;
 	
-	BankAreas(Area _area) {
+	BankAreas(String _stringArea, Area _area) {
+		this.stringArea = _stringArea;
 		this.area = _area;
+	}
+	
+	public String getStringArea() {
+		return stringArea;
 	}
 	
 	public Area getArea() {
