@@ -15,7 +15,7 @@ public class Settings {
 	
 	public String[] getAllTreeNames() {
 		for (int i = 0; i < Trees.values().length; i++) {
-			names[i] = Trees.
+			names[i] = Trees[i];
 		}
 		return names;
 	}
