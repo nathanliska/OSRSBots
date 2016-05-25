@@ -1,6 +1,7 @@
 package hoWoodcutter;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,6 +16,7 @@ import javax.swing.JLabel;
 
 public class hoWoodcutterGUI extends JFrame {
 
+	private hoWoodcutter context;
 	private JPanel contentPane;
 
 	/**
@@ -24,8 +26,8 @@ public class hoWoodcutterGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					hoWoodcutterGUI frame = new hoWoodcutterGUI();
-					frame.setVisible(true);
+					//hoWoodcutterGUI frame = new hoWoodcutterGUI();
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -36,7 +38,10 @@ public class hoWoodcutterGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public hoWoodcutterGUI() {
+	private hoWoodcutterGUI(hoWoodcutter main) {
+		
+		this.context = main;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 300, 250);
 		contentPane = new JPanel();
@@ -44,6 +49,7 @@ public class hoWoodcutterGUI extends JFrame {
 		setContentPane(contentPane);
 		
 		JButton btnNewButton = new JButton("Start");
+		btnNewButton.addActionListener(e -> startButtonActionPerformed(e));
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Normal", "Oak", "WIllow", "Maple", "Yew", "Magic"}));
@@ -100,4 +106,9 @@ public class hoWoodcutterGUI extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
+
+	private void startButtonActionPerformed(ActionEvent e) {
+		context.setShouldStart(true);
+	}
+	
 }
