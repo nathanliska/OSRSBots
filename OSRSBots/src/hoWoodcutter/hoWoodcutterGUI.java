@@ -18,7 +18,7 @@ import hoWoodcutter.util.Trees;
 
 public class hoWoodcutterGUI extends JFrame {
 
-	private hoWoodcutter context;
+	private static hoWoodcutter context;
 	private JPanel contentPane;
 
 	/**
@@ -28,8 +28,8 @@ public class hoWoodcutterGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//hoWoodcutterGUI frame = new hoWoodcutterGUI();
-					//frame.setVisible(true);
+					hoWoodcutterGUI frame = new hoWoodcutterGUI(context);
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -42,7 +42,7 @@ public class hoWoodcutterGUI extends JFrame {
 	 */
 	private hoWoodcutterGUI(hoWoodcutter main) {
 		
-		this.context = main;
+		hoWoodcutterGUI.context = main;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 300, 250);
