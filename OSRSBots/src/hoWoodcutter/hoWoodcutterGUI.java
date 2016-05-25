@@ -16,12 +16,17 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 
 import hoWoodcutter.util.Trees;
-import hoWoodcutter.core.Settings;
+import hoWoodcutter.util.TreeAreas;
+import hoWoodcutter.util.BankAreas;
 
 public class hoWoodcutterGUI extends JFrame {
 
 	private static hoWoodcutter context;
 	private JPanel contentPane;
+	
+	private String[] treeNames = new String[Trees.values().length];
+	private String[] treeAreaNames = new String[TreeAreas.values().length];
+	private String[] bankAreaNames = new String[BankAreas.values().length];
 
 	/**
 	 * Launch the application.
@@ -37,6 +42,27 @@ public class hoWoodcutterGUI extends JFrame {
 				}
 			}
 		});
+	}
+	
+	private String[] getAllTreeNames() {
+		for (int i = 0; i < Trees.values().length; i++) {
+			treeNames[i] = Trees.values()[i].getTreeName();
+		}
+		return treeNames;
+	}
+	
+	private String[] getAllTreeAreaNames() {
+		for (int i = 0; i < Trees.values().length; i++) {
+			treeAreaNames[i] = Trees.values()[i].getTreeName();
+		}
+		return treeAreaNames;
+	}
+	
+	private String[] getAllBankAreaNames() {
+		for (int i = 0; i < Trees.values().length; i++) {
+			bankAreaNames[i] = Trees.values()[i].getTreeName();
+		}
+		return bankAreaNames;
 	}
 
 	/**
@@ -56,13 +82,13 @@ public class hoWoodcutterGUI extends JFrame {
 		btnNewButton.addActionListener(e -> startButtonActionPerformed(e));
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(context.settings.getAllTreeNames()));
+		comboBox.setModel(new DefaultComboBoxModel(getAllTreeNames()));
 		
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(context.settings.getAllTreeAreaNames()));
+		comboBox_1.setModel(new DefaultComboBoxModel(getAllTreeAreaNames()));
 		
 		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setModel(new DefaultComboBoxModel(context.settings.getAllBankNames()));
+		comboBox_2.setModel(new DefaultComboBoxModel(getAllBankAreaNames()));
 		
 		JLabel lblSelectTypeOf = new JLabel("Select type of logs");
 		
