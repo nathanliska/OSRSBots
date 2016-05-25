@@ -1,6 +1,5 @@
 package hoWoodcutter.util;
 
-public enum Areas {
-
+public enum Locations {
 
 }

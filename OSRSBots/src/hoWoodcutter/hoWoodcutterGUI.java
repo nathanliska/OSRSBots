@@ -110,5 +110,4 @@ public class hoWoodcutterGUI extends JFrame {
 	private void startButtonActionPerformed(ActionEvent e) {
 		context.setShouldStart(true);
 	}
-	
 }

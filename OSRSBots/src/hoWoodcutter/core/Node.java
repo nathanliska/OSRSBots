@@ -6,11 +6,11 @@ import org.dreambot.api.script.AbstractScript;
 public abstract class Node {
 	
 	//Script instance to use inside of subclasses.
-	public AbstractScript aScript;
+	public AbstractScript script;
 	
 	//Node constructor takes the script argument.
-	public Node(AbstractScript script) {
-		this.aScript = script;
+	public Node(AbstractScript _script) {
+		this.script = _script;
 	}
 	
 	//Delays node 100-500ms.
