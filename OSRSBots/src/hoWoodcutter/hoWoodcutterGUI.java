@@ -86,7 +86,7 @@ public class hoWoodcutterGUI extends JFrame {
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(getAllTreeAreaNames()));
-		
+
 		JComboBox comboBox_2 = new JComboBox();
 		comboBox_2.setModel(new DefaultComboBoxModel(getAllBankAreaNames()));
 		

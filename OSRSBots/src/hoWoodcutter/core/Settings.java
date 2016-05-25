@@ -16,4 +16,5 @@ public class Settings {
 	public Locations getLocations() {
 		return locations;
 	}
+
 }
