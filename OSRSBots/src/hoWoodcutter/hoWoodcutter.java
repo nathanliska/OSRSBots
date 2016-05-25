@@ -8,15 +8,17 @@ import org.dreambot.api.wrappers.interactive.GameObject;
 
 import hoWoodcutter.core.Settings;
 
-@ScriptManifest(category = Category.WOODCUTTING, name = "hoWoodcutter", description = "Gets the wood, ya dummy.", author = "Heatslinger and Opoz", version = 1.0)
+@ScriptManifest(category = Category.WOODCUTTING, name = "hoWoodcutter", description = "Gets the wood, ya dummy.", author = "HeatSlinger & Opoz", version = 1.0)
 public class hoWoodcutter extends AbstractScript {
 	
 	private boolean shouldStart;
-	public Settings settings = new Settings();
+	private Settings settings;
 	
 	@Override
 	public void onStart() {
-		log("Hello, you have started hoWoodcutter by Heatslinger and Opoz, enjoy!");
+		log("Hello, you have started hoWoodcutter by HeatSlinger & Opoz, enjoy!");
+		
+		settings = new Settings();
 	}
 	
 	@Override
