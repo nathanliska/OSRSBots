@@ -3,7 +3,7 @@ package hoWoodcutter.core;
 public class Settings {
 
 	//Creates references to Locations
-	private Locations location;
+	public static Locations location;
 	
 	public Settings() {
 		//nothing

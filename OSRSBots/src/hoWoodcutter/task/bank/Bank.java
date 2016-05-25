@@ -3,6 +3,7 @@ package hoWoodcutter.task.bank;
 import org.dreambot.api.script.AbstractScript;
 
 import hoWoodcutter.core.Node;
+import hoWoodcutter.core.Settings;
 
 public class Bank extends Node {
 
@@ -17,8 +18,7 @@ public class Bank extends Node {
 	
 	@Override
 	public boolean validate() {
-		// TODO Auto-generated method stub
-		return false;
+		return (Settings.location.getBankArea().getArea().contains(script.getLocalPlayer()) );
 	}
 
 	@Override
