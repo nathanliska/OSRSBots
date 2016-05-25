@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import javax.swing.JButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -15,6 +16,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 
 import hoWoodcutter.util.Trees;
+import hoWoodcutter.core.Settings;
 
 public class hoWoodcutterGUI extends JFrame {
 
@@ -54,7 +56,7 @@ public class hoWoodcutterGUI extends JFrame {
 		btnNewButton.addActionListener(e -> startButtonActionPerformed(e));
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Normal", "Oak", "WIllow", "Maple", "Yew", "Magic"}));
+		comboBox.setModel(new DefaultComboBoxModel(context.settings.getAllTreeNames()));
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Draenor", "Edgeville", "Grand Exchange", "Lumbridge"}));

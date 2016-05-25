@@ -9,6 +9,10 @@ public class Settings {
 	
 	private String[] names = new String[Trees.values().length];
 	
+	public Settings() {
+		//nothing
+	}
+	
 	public Locations getLocations() {
 		return locations;
 	}
