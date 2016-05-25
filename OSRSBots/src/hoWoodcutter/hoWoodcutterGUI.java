@@ -59,10 +59,10 @@ public class hoWoodcutterGUI extends JFrame {
 		comboBox.setModel(new DefaultComboBoxModel(context.settings.getAllTreeNames()));
 		
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Draenor", "Edgeville", "Grand Exchange", "Lumbridge"}));
+		comboBox_1.setModel(new DefaultComboBoxModel(context.settings.getAllTreeAreaNames()));
 		
 		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Draenor", "Lumbridge Castle", "Edgeville", "Grand Exchange"}));
+		comboBox_2.setModel(new DefaultComboBoxModel(context.settings.getAllBankNames()));
 		
 		JLabel lblSelectTypeOf = new JLabel("Select type of logs");
 		
