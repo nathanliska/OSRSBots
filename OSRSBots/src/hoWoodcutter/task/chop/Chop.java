@@ -30,10 +30,12 @@ public class Chop extends Node {
 
 		//should probably make sure you don't cut down trees that are visible but out of the bounding box, keeps happening to me
 		
-		if(tree.interact("Chop down")) {
+		if(tree.interact("Chop down") && Settings.location.getTreeArea().getArea().contains(tree.getTile())) {
 			int countLog = script.getInventory().count(Settings.location.getTree().getLogName());
 			AbstractScript.sleepUntil(() -> script.getInventory().count(Settings.location.getTree().getLogName()) > countLog, 
 					Calculations.random(11000, 13000));
+		} else {
+			script.getWalking().walk(Settings.location.getTreeArea().getArea().getCenter());
 		}
 	}
 

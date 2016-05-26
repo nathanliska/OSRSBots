@@ -25,11 +25,12 @@ import hoWoodcutter.task.bank.Bank;
 import hoWoodcutter.task.bank.BankWalk;
 import hoWoodcutter.task.chop.Chop;
 import hoWoodcutter.task.chop.ChopWalk;
+import hoWoodcutter.task.flee.Flee;
 
 @ScriptManifest(category = Category.WOODCUTTING, name = "hoWoodcutter", description = "Gets the wood, ya dummy.", author = "HeatSlinger & Opoz", version = 0.1)
 public class hoWoodcutter extends AbstractScript {
 	
-	private final Node[] nodeArray = new Node[] {new Bank(this), new BankWalk(this), new Chop(this), new ChopWalk(this)};
+	private final Node[] nodeArray = new Node[] {new Flee(this), new Bank(this), new BankWalk(this), new Chop(this), new ChopWalk(this)};
 	
 	private boolean shouldStart;
 	private hoWoodcutterGUI gui;
@@ -69,6 +70,7 @@ public class hoWoodcutter extends AbstractScript {
 			for (final Node node : nodeArray) {
 				if (node.validate()) {
 					node.execute();
+					return 0;
 				}
 				sleep(500);
 			}
@@ -103,7 +105,7 @@ public class hoWoodcutter extends AbstractScript {
 	
 	@Override
 	public void onPause() {
-		log("IS THIS EVEN RUNNING?"); //no
+		
 	}
 	
 	@Override
