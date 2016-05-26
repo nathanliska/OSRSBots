@@ -21,8 +21,6 @@ import org.dreambot.api.wrappers.widgets.message.Message;
 
 import hoWoodcutter.core.Locations;
 import hoWoodcutter.core.Settings;
-import hoWoodcutter.death.RetrieveItems;
-import hoWoodcutter.death.RetrieveItemsWalk;
 import hoWoodcutter.task.Node;
 import hoWoodcutter.task.bank.Bank;
 import hoWoodcutter.task.bank.BankWalk;
