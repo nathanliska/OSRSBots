@@ -3,14 +3,16 @@ package hoWoodcutter.core;
 public class Settings {
 
 	//Creates instantiation of Locations
-	private final Locations location;
+	private Locations location;
 	
-	public Settings(Locations location) {
+	public Settings() {;
+	}
+	
+	public void setLocation(Locations location) {
 		this.location = location;
 	}
 	
-	public Locations getLocations() {
+	public Locations getLocation() {
 		return location;
 	}
-	
 }

@@ -77,7 +77,7 @@ public class hoWoodcutter extends AbstractScript {
 					sleep(500);
 				}
 			} else {
-				settings = new Settings(new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea()));
+				settings.setLocation(new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea()));
 			}
 		}
 		return Calculations.random(300, 500);
