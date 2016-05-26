@@ -5,7 +5,8 @@ public class Settings {
 	//Creates instantiation of Locations
 	private Locations location;
 	
-	public Settings() {;
+	public Settings() {
+		location = null;
 	}
 	
 	public void setLocations(Locations location) {
