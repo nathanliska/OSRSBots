@@ -7,10 +7,12 @@ public abstract class Node {
 	
 	//Script instance to use inside of subclasses
 	public AbstractScript script;
+	public Settings settings;
 	
 	//Node constructor takes the script argument
-	public Node(AbstractScript script) {
+	public Node(AbstractScript script, Settings settings) {
 		this.script = script;
+		this.settings = settings;
 	}
 	
 	//Delays node 100-500ms

@@ -6,9 +6,9 @@ import hoWoodcutter.util.Trees;
 
 public class Locations {
 
-	private Trees tree;
-	private TreeAreas treeArea;
-	private BankAreas bankArea;
+	private final Trees tree;
+	private final TreeAreas treeArea;
+	private final BankAreas bankArea;
 	
 	public Locations(Trees tree, TreeAreas treeArea, BankAreas bankArea) {
 		this.tree = tree;

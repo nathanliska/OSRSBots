@@ -9,8 +9,8 @@ import hoWoodcutter.core.Settings;
 
 public class BankWalk extends Node {
 
-	public BankWalk(AbstractScript script) {
-		super(script);
+	public BankWalk(AbstractScript script, Settings settings) {
+		super(script, settings);
 	}
 
 	@Override
@@ -20,12 +20,12 @@ public class BankWalk extends Node {
 	
 	@Override
 	public boolean validate() {
-		return (script.getInventory().isFull() && !Settings.location.getBankArea().getArea().contains(script.getLocalPlayer()));
+		return (script.getInventory().isFull() && !settings.getLocation().getBankArea().getArea().contains(script.getLocalPlayer()));
 	}
 
 	@Override
 	public void execute() {
-		if(script.getWalking().walk(Settings.location.getBankArea().getArea().getRandomTile())) {
+		if(script.getWalking().walk(settings.getLocation().getBankArea().getArea().getRandomTile())) {
 			AbstractScript.sleep(Calculations.random(450, 550)); //buffer so it doesn't double click before movement starts
 			AbstractScript.sleepWhile(new Condition() {
 				

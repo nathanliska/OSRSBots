@@ -9,8 +9,8 @@ import hoWoodcutter.core.Settings;
 
 public class Bank extends Node {
 
-	public Bank(AbstractScript script) {
-		super(script);
+	public Bank(AbstractScript script, Settings settings) {
+		super(script, settings);
 	}
 
 	@Override
@@ -20,7 +20,7 @@ public class Bank extends Node {
 	
 	@Override
 	public boolean validate() {
-		return (script.getInventory().isFull() && Settings.location.getBankArea().getArea().contains(script.getLocalPlayer()));
+		return (script.getInventory().isFull() && settings.getLocation().getBankArea().getArea().contains(script.getLocalPlayer()));
 	}
 
 	@Override
