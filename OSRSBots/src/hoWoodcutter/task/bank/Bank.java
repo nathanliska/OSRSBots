@@ -20,7 +20,7 @@ public class Bank extends Node {
 	
 	@Override
 	public boolean validate() {
-		return (script.getInventory().isFull() && settings.getLocation().getBankArea().getArea().contains(script.getLocalPlayer()));
+		return (script.getInventory().isFull() && settings.getLocations().getBankArea().getArea().contains(script.getLocalPlayer()));
 	}
 
 	@Override

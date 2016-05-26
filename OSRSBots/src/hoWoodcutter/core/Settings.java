@@ -9,7 +9,7 @@ public class Settings {
 		this.location = location;
 	}
 	
-	public Locations getLocation() {
+	public Locations getLocations() {
 		return location;
 	}
 	

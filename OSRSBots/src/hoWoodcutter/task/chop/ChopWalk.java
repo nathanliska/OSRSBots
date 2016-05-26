@@ -20,12 +20,12 @@ public class ChopWalk extends Node {
 	
 	@Override
 	public boolean validate() {
-		return (!script.getInventory().isFull() && !settings.getLocation().getTreeArea().getArea().contains(script.getLocalPlayer()));
+		return (!script.getInventory().isFull() && !settings.getLocations().getTreeArea().getArea().contains(script.getLocalPlayer()));
 	}
 
 	@Override
 	public void execute() {
-		if(script.getWalking().walk(settings.getLocation().getTreeArea().getArea().getRandomTile())) {
+		if(script.getWalking().walk(settings.getLocations().getTreeArea().getArea().getRandomTile())) {
 			AbstractScript.sleep(Calculations.random(450, 550)); //buffer so it doesn't double click before movement starts
 			AbstractScript.sleepWhile(new Condition() {
 				

@@ -67,7 +67,6 @@ public class hoWoodcutter extends AbstractScript {
 				if (node.validate()) {
 					node.execute();
 				}
-				sleep(200);
 			}
 		}
 		return Calculations.random(300, 500);
