@@ -5,6 +5,7 @@ import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.script.Category;
 import org.dreambot.api.script.ScriptManifest;
 
+import hoWoodcutter.core.Locations;
 import hoWoodcutter.core.Node;
 import hoWoodcutter.task.bank.Bank;
 
@@ -15,6 +16,7 @@ public class hoWoodcutter extends AbstractScript {
 	
 	private boolean shouldStart;
 	private hoWoodcutterGUI gui;
+	private Locations locations;
 	
 	@Override
 	public void onStart() {
@@ -28,6 +30,7 @@ public class hoWoodcutter extends AbstractScript {
 	@Override
 	public int onLoop() {
 		if(shouldStart) {
+			//locations = new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea());
 			for (final Node node : nodeArray) {
 				if (node.validate()) {
 					node.execute();
@@ -48,5 +51,9 @@ public class hoWoodcutter extends AbstractScript {
 	
 	public hoWoodcutterGUI getGUI() {
 		return gui;
+	}
+	
+	public Locations getLocations() {
+		return locations;
 	}
 }
