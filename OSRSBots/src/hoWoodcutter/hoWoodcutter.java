@@ -19,7 +19,8 @@ import org.dreambot.api.utilities.Timer;
 import org.dreambot.api.wrappers.widgets.message.Message;
 
 import hoWoodcutter.core.Locations;
-import hoWoodcutter.core.Node;	
+import hoWoodcutter.core.Node;
+import hoWoodcutter.core.Settings;
 import hoWoodcutter.task.bank.Bank;
 import hoWoodcutter.task.bank.BankWalk;
 import hoWoodcutter.task.chop.Chop;
@@ -33,6 +34,7 @@ public class hoWoodcutter extends AbstractScript {
 	private boolean shouldStart;
 	private hoWoodcutterGUI gui;
 	private Locations locations;
+	private Settings settings;
 	
 	private BufferedImage mainPaint = getImage("https://i.imgur.com/CvlJRqf.jpg");
 	private int logsCut;
@@ -46,6 +48,7 @@ public class hoWoodcutter extends AbstractScript {
 		timeRan = new Timer();
 		tracker = new SkillTracker(getClient());
 		tracker.start(Skill.WOODCUTTING);
+		settings = new Settings();
 		log("Hello, you have started hoWoodcutter by HeatSlinger & Opoz, enjoy!");
 	}
 	
@@ -60,10 +63,12 @@ public class hoWoodcutter extends AbstractScript {
 	public int onLoop() {
 		if(shouldStart) {
 			locations = new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea());
+			settings.SetLocations(locations);
 			for (final Node node : nodeArray) {
 				if (node.validate()) {
 					node.execute();
 				}
+				sleep(500);
 			}
 		}
 		return Calculations.random(300, 500);

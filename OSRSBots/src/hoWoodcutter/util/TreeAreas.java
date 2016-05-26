@@ -20,7 +20,7 @@ public enum TreeAreas {
 	}
 	
 	public Area getArea() {
-		return area;
+		return new Area(3076, 3253, 3078, 3251, 0);
 	}
 
 }

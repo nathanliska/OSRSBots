@@ -39,7 +39,7 @@ public enum BankAreas {
 	}
 	
 	public Area getArea() {
-		return area;
+		return new Area(3092, 3240, 3097, 3246, 0);
 	}
 
 }

@@ -19,6 +19,7 @@ import hoWoodcutter.util.Trees;
 import hoWoodcutter.util.TreeAreas;
 import hoWoodcutter.util.BankAreas;
 
+@SuppressWarnings("serial")
 public class hoWoodcutterGUI extends JFrame {
 
 	private static hoWoodcutter context;
@@ -28,8 +29,11 @@ public class hoWoodcutterGUI extends JFrame {
 	private String[] treeAreaNames = new String[TreeAreas.values().length];
 	private String[] bankAreaNames = new String[BankAreas.values().length];
 	
+	@SuppressWarnings("rawtypes")
 	private JComboBox treeType;
+	@SuppressWarnings("rawtypes")
 	private JComboBox treeArea;
+	@SuppressWarnings("rawtypes")
 	private JComboBox bankArea;
 
 	/**
@@ -72,6 +76,7 @@ public class hoWoodcutterGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public hoWoodcutterGUI(hoWoodcutter main) {
 		
 		hoWoodcutterGUI.context = main;
