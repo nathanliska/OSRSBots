@@ -36,5 +36,4 @@ public class BankWalk extends Node {
 			}, Calculations.random(3000, 5000));
 		}
 	}
-
 }
