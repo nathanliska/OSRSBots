@@ -36,6 +36,7 @@ public class hoWoodcutter extends AbstractScript {
 	
 	private BufferedImage mainPaint = getImage("https://i.imgur.com/CvlJRqf.jpg");
 	private int logsCut;
+	private String status;
 	private Timer timeRan;
 	private SkillTracker tracker;
 	
@@ -44,7 +45,6 @@ public class hoWoodcutter extends AbstractScript {
 		gui = new hoWoodcutterGUI(this);
 		timeRan = new Timer();
 		tracker = new SkillTracker(getClient());
-		settings = new Settings(new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea()));
 		nodeArray = new Node[] {new Bank(this), new BankWalk(this), new Chop(this), new ChopWalk(this)};
 		
 		gui.setVisible(true);
@@ -63,11 +63,16 @@ public class hoWoodcutter extends AbstractScript {
 	@Override
 	public int onLoop() {
 		if(shouldStart) {
-			for (final Node node : nodeArray) {
-				if (node.validate()) {
-					node.execute();
-				}
-				sleep(200);
+			if(settings != null) {
+				for (final Node node : nodeArray) {
+					if (node.validate()) {
+						node.execute();
+						status = node.status();
+					}
+					sleep(200);
+				}	
+			}else{
+				settings = new Settings(new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea()));
 			}
 		}
 		return Calculations.random(300, 500);
@@ -95,6 +100,8 @@ public class hoWoodcutter extends AbstractScript {
 		g.drawString("" + tracker.getGainedExperiencePerHour(Skill.WOODCUTTING), 435, 77);
 		//Time Elapsed
 		g.drawString("" + timeRan.formatTime(), 435, 94);
+		//Current Status
+		g.drawString("" + status, 400, 300);
 		
 	}
 	

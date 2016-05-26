@@ -33,7 +33,7 @@ public class Chop extends Node {
 		if(tree.interact("Chop down")) {
 			int countLog = script.getInventory().count(script.getSettings().getLocations().getTree().getLogName());
 			AbstractScript.sleepUntil(() -> script.getInventory().count(script.getSettings().getLocations().getTree().getLogName()) > countLog, 
-					Calculations.random(11000, 13000));
+					Calculations.random(13000, 15000));
 		}
 	}
 
