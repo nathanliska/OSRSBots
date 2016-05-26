@@ -6,25 +6,25 @@ import hoWoodcutter.util.Trees;
 
 public class Locations {
 
-	private Trees tree;
-	private TreeAreas treeArea;
-	private BankAreas bankArea;
+	private String tree;
+	private String treeArea;
+	private String bankArea;
 	
-	Locations(Trees _tree, TreeAreas _treeArea, BankAreas _bankArea) {
-		this.tree = _tree;
-		this.bankArea = _bankArea;
-		this.treeArea = _treeArea;
+	public Locations(String tree, String _treeArea, String _bankArea) {
+		this.tree = tree;
+		this.bankArea = bankArea;
+		this.treeArea = treeArea;
 	}
 	
-	public Trees getTree() {
+	public String getTree() {
 		return tree;
 	}
 	
-	public TreeAreas getTreeArea() {
+	public String getTreeArea() {
 		return treeArea;
 	}
 	
-	public BankAreas getBankArea() {
+	public String getBankArea() {
 		return bankArea;
 	}
 }

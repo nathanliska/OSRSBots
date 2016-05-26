@@ -32,7 +32,7 @@ public class hoWoodcutter extends AbstractScript {
 	@Override
 	public int onLoop() {
 		if(shouldStart) {
-			//locations = new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea());
+			locations = new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea());
 			for (final Node node : nodeArray) {
 				if (node.validate()) {
 					node.execute();
