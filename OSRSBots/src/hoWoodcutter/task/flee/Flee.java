@@ -21,7 +21,7 @@ public class Flee extends Node {
 	@Override
 	public boolean validate() {
 		return (script.getLocalPlayer().isInCombat()
-				&& script.getSettings().getLocations().getBankArea().getArea().contains(script.getLocalPlayer()));
+				&& !script.getSettings().getLocations().getBankArea().getArea().contains(script.getLocalPlayer()));
 	}
 
 	@Override

@@ -47,7 +47,6 @@ public class hoWoodcutter extends AbstractScript {
 		timeRan = new Timer();
 		tracker = new SkillTracker(getClient());
 		nodeArray = new Node[] {new Flee(this), new Bank(this), new BankWalk(this), new Chop(this), new ChopWalk(this)};
-		
 		gui.setVisible(true);
 		tracker.start(Skill.WOODCUTTING);
 		
@@ -67,6 +66,7 @@ public class hoWoodcutter extends AbstractScript {
 			if(settings != null) {
 			for (final Node node : nodeArray) {
 				if (node.validate()) {
+					status = node.status();
 					node.execute();
 					node.delay();
 					return 0;
@@ -103,7 +103,7 @@ public class hoWoodcutter extends AbstractScript {
 		//Time Elapsed
 		g.drawString("" + timeRan.formatTime(), 435, 94);
 		//Current Status
-		g.drawString("" + status, 400, 300);
+		g.drawString("" + status, 213, 333);
 		
 	}
 	
