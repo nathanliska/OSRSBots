@@ -147,15 +147,15 @@ public class hoWoodcutterGUI extends JFrame {
 	}
 
 	public Trees getTreeType() {		
-		return Trees.values()[(int)treeType.getSelectedItem()];
+		return Trees.values()[treeType.getSelectedIndex()];
 	}
 	
 	public TreeAreas getTreeArea() {
-		return TreeAreas.values()[(int)treeArea.getSelectedItem()];
+		return TreeAreas.values()[treeArea.getSelectedIndex()];
 	}
 	
 	public BankAreas getBankArea() {
-		return BankAreas.values()[(int)bankArea.getSelectedItem()];
+		return BankAreas.values()[bankArea.getSelectedIndex()];
 	}
 	
 	private void startButtonActionPerformed(ActionEvent e) {
