@@ -28,6 +28,8 @@ public class Chop extends Node {
 		GameObject tree = script.getGameObjects().closest(gameObject -> gameObject != null && gameObject.getName().equals(Settings.location.getTree().getTreeName())
 				&& gameObject.hasAction("Chop down"));
 
+		//should probably make sure you don't cut down trees that are visible but out of the bounding box, keeps happening to me
+		
 		if(tree.interact("Chop down")) {
 			int countLog = script.getInventory().count(Settings.location.getTree().getLogName());
 			AbstractScript.sleepUntil(() -> script.getInventory().count(Settings.location.getTree().getLogName()) > countLog, 
