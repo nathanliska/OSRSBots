@@ -4,13 +4,13 @@ import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.wrappers.interactive.GameObject;
 
+import hoWoodcutter.hoWoodcutter;
 import hoWoodcutter.core.Node;
-import hoWoodcutter.core.Settings;
 
 public class Chop extends Node {
 
-	public Chop(AbstractScript script, Settings settings) {
-		super(script, settings);
+	public Chop(hoWoodcutter script) {
+		super(script);
 	}
 
 	@Override
@@ -20,19 +20,19 @@ public class Chop extends Node {
 	
 	@Override
 	public boolean validate() {
-		return (!script.getInventory().isFull() && settings.getLocations().getTreeArea().getArea().contains(script.getLocalPlayer()));
+		return (!script.getInventory().isFull() && script.getSettings().getLocations().getTreeArea().getArea().contains(script.getLocalPlayer()));
 	}
 
 	@Override
 	public void execute() {
-		GameObject tree = script.getGameObjects().closest(gameObject -> gameObject != null && gameObject.getName().equals(settings.getLocations().getTree().getTreeName())
+		GameObject tree = script.getGameObjects().closest(gameObject -> gameObject != null && gameObject.getName().equals(script.getSettings().getLocations().getTree().getTreeName())
 				&& gameObject.hasAction("Chop down"));
 
 		//should probably make sure you don't cut down trees that are visible but out of the bounding box, keeps happening to me
 		
 		if(tree.interact("Chop down")) {
-			int countLog = script.getInventory().count(settings.getLocations().getTree().getLogName());
-			AbstractScript.sleepUntil(() -> script.getInventory().count(settings.getLocations().getTree().getLogName()) > countLog, 
+			int countLog = script.getInventory().count(script.getSettings().getLocations().getTree().getLogName());
+			AbstractScript.sleepUntil(() -> script.getInventory().count(script.getSettings().getLocations().getTree().getLogName()) > countLog, 
 					Calculations.random(11000, 13000));
 		}
 	}

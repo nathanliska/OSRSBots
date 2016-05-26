@@ -45,7 +45,7 @@ public class hoWoodcutter extends AbstractScript {
 		timeRan = new Timer();
 		tracker = new SkillTracker(getClient());
 		settings = new Settings(new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea()));
-		nodeArray = new Node[] {new Bank(this, settings), new BankWalk(this, settings), new Chop(this, settings), new ChopWalk(this, settings)};
+		nodeArray = new Node[] {new Bank(this), new BankWalk(this), new Chop(this), new ChopWalk(this)};
 		
 		gui.setVisible(true);
 		tracker.start(Skill.WOODCUTTING);
@@ -67,6 +67,7 @@ public class hoWoodcutter extends AbstractScript {
 				if (node.validate()) {
 					node.execute();
 				}
+				sleep(200);
 			}
 		}
 		return Calculations.random(300, 500);
@@ -111,5 +112,9 @@ public class hoWoodcutter extends AbstractScript {
 	
 	public hoWoodcutterGUI getGUI() {
 		return gui;
+	}
+	
+	public Settings getSettings() {
+		return settings;
 	}
 }

@@ -4,13 +4,13 @@ import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.utilities.impl.Condition;
 
+import hoWoodcutter.hoWoodcutter;
 import hoWoodcutter.core.Node;
-import hoWoodcutter.core.Settings;
 
 public class BankWalk extends Node {
 
-	public BankWalk(AbstractScript script, Settings settings) {
-		super(script, settings);
+	public BankWalk(hoWoodcutter script) {
+		super(script);
 	}
 
 	@Override
@@ -20,12 +20,12 @@ public class BankWalk extends Node {
 	
 	@Override
 	public boolean validate() {
-		return (script.getInventory().isFull() && !settings.getLocations().getBankArea().getArea().contains(script.getLocalPlayer()));
+		return (script.getInventory().isFull() && !script.getSettings().getLocations().getBankArea().getArea().contains(script.getLocalPlayer()));
 	}
 
 	@Override
 	public void execute() {
-		if(script.getWalking().walk(settings.getLocations().getBankArea().getArea().getRandomTile())) {
+		if(script.getWalking().walk(script.getSettings().getLocations().getBankArea().getArea().getRandomTile())) {
 			AbstractScript.sleep(Calculations.random(450, 550)); //buffer so it doesn't double click before movement starts
 			AbstractScript.sleepWhile(new Condition() {
 				

@@ -1,18 +1,17 @@
 package hoWoodcutter.core;
 
 import org.dreambot.api.methods.Calculations;
-import org.dreambot.api.script.AbstractScript;
+
+import hoWoodcutter.hoWoodcutter;
 
 public abstract class Node {
 	
 	//Script instance to use inside of subclasses
-	public AbstractScript script;
-	public Settings settings;
+	public hoWoodcutter script;
 	
 	//Node constructor takes the script argument
-	public Node(AbstractScript script, Settings settings) {
+	public Node(hoWoodcutter script) {
 		this.script = script;
-		this.settings = settings;
 	}
 	
 	//Delays node 100-500ms
