@@ -23,7 +23,7 @@ public class BankWalk extends Node {
 
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
+		// TODO WALK TO BANK AREA.
 		
 	}
 

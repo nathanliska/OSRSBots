@@ -23,7 +23,7 @@ public class Bank extends Node {
 
 	@Override
 	public void execute() {
-		// BANK ALL ITEMS.
+		// TODO BANK ALL ITEMS IN BANK AREA.
 		
 	}
 }

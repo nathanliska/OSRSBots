@@ -1,9 +1,8 @@
 package hoWoodcutter.core;
 
-import hoWoodcutter.util.Trees;
-
 import hoWoodcutter.util.BankAreas;
 import hoWoodcutter.util.TreeAreas;
+import hoWoodcutter.util.Trees;
 
 public class Locations {
 
