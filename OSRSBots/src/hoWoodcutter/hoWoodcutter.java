@@ -19,8 +19,8 @@ import org.dreambot.api.utilities.Timer;
 import org.dreambot.api.wrappers.widgets.message.Message;
 
 import hoWoodcutter.core.Locations;
-import hoWoodcutter.core.Node;
 import hoWoodcutter.core.Settings;
+import hoWoodcutter.task.Node;
 import hoWoodcutter.task.bank.Bank;
 import hoWoodcutter.task.bank.BankWalk;
 import hoWoodcutter.task.chop.Chop;

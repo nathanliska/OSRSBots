@@ -5,7 +5,7 @@ import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.utilities.impl.Condition;
 
 import hoWoodcutter.hoWoodcutter;
-import hoWoodcutter.core.Node;
+import hoWoodcutter.task.Node;
 
 public class ChopWalk extends Node {
 

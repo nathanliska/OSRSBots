@@ -5,7 +5,7 @@ import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.wrappers.interactive.NPC;
 
 import hoWoodcutter.hoWoodcutter;
-import hoWoodcutter.core.Node;
+import hoWoodcutter.task.Node;
 
 public class Bank extends Node {
 
