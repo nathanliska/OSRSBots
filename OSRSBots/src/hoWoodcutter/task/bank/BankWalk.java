@@ -31,7 +31,7 @@ public class BankWalk extends Node {
 				
 				@Override
 				public boolean verify() {
-					return !(script.getLocalPlayer().distance(script.getWalking().getDestination()) < 5);
+					return script.getClient().getLocalPlayer().isMoving();
 				}
 			}, Calculations.random(9000, 11000));
 		}

@@ -31,7 +31,7 @@ public class ChopWalk extends Node {
 				
 				@Override
 				public boolean verify() {
-					return !(script.getLocalPlayer().distance(script.getWalking().getDestination()) < 5);
+					return script.getLocalPlayer().isMoving();
 				}
 			}, Calculations.random(9000, 11000));
 		}
