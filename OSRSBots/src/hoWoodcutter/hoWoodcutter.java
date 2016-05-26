@@ -8,7 +8,7 @@ import org.dreambot.api.script.ScriptManifest;
 import hoWoodcutter.core.Node;
 import hoWoodcutter.task.bank.Bank;
 
-@ScriptManifest(category = Category.WOODCUTTING, name = "hoWoodcutter", description = "Gets the wood, ya dummy.", author = "HeatSlinger & Opoz", version = 1.0)
+@ScriptManifest(category = Category.WOODCUTTING, name = "hoWoodcutter", description = "Gets the wood, ya dummy.", author = "HeatSlinger & Opoz", version = 0.1)
 public class hoWoodcutter extends AbstractScript {
 	
 	private final Node[] nodeArray = new Node[] {new Bank(this)};
