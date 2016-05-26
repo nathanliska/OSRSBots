@@ -10,9 +10,12 @@ import org.dreambot.api.wrappers.interactive.GameObject;
 public class hoWoodcutter extends AbstractScript {
 	
 	private boolean shouldStart;
+	private hoWoodcutterGUI gui;
 	
 	@Override
 	public void onStart() {
+		gui = new hoWoodcutterGUI(this);
+		gui.setVisible(true);
 		log("Hello, you have started hoWoodcutter by HeatSlinger & Opoz, enjoy!");
 	}
 	

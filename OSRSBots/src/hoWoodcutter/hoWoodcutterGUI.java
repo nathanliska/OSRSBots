@@ -68,7 +68,7 @@ public class hoWoodcutterGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	private hoWoodcutterGUI(hoWoodcutter main) {
+	public hoWoodcutterGUI(hoWoodcutter main) {
 		
 		hoWoodcutterGUI.context = main;
 		
