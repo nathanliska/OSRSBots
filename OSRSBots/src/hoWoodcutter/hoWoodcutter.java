@@ -36,7 +36,7 @@ public class hoWoodcutter extends AbstractScript {
 	private Node[] nodeArray;
 	private Settings settings;
 
-	private BufferedImage mainPaint = getImage("https://i.imgur.com/CvlJRqf.jpg");
+	private BufferedImage mainPaint = getImage("http://i.imgur.com/TUk704K.jpg");
 	private int logsCut;
 	private String status;
 	private Timer timeRan;
@@ -104,18 +104,21 @@ public class hoWoodcutter extends AbstractScript {
 		Font font = new Font("Arial", Font.BOLD, 13);
 		g.setFont(font);
 		g.setColor(Color.BLACK);
-		// Logs Cut
-		g.drawString("" + logsCut, 435, 25);
-		// Logs/hr
-		g.drawString("" + logsCut * (int) 3600000D / timeRan.elapsed(), 435, 42);
-		// Xp Gained
-		g.drawString("" + tracker.getGainedExperience(Skill.WOODCUTTING), 435, 59);
-		// Xp Gain/hr
-		g.drawString("" + tracker.getGainedExperiencePerHour(Skill.WOODCUTTING), 435, 77);
 		// Time Elapsed
-		g.drawString("" + timeRan.formatTime(), 435, 94);
+		g.drawString("" + timeRan.formatTime(), 435, 17);
+		// Logs Cut
+		g.drawString("" + logsCut, 435, 34);
+		// Logs/hr
+		g.drawString("" + logsCut * (int) 3600000D / timeRan.elapsed(), 435, 50);
+		// Xp Gained
+		g.drawString("" + tracker.getGainedExperience(Skill.WOODCUTTING), 435, 66);
+		// Xp Gain/hr
+		g.drawString("" + tracker.getGainedExperiencePerHour(Skill.WOODCUTTING), 435, 82);
+		// Gp/hr
+		g.drawString("" + settings.getLocations().getTree().getLogPrice() * logsCut * (int) 3600000D / timeRan.elapsed(), 435, 98);
 		// Current Status
-		g.drawString("Status: " + status, 213, 333);
+		g.drawString("Status: " + status, 185, 333);
+		
 
 	}
 
