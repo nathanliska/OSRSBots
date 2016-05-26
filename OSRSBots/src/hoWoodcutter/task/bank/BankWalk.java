@@ -9,8 +9,8 @@ import hoWoodcutter.core.Settings;
 
 public class BankWalk extends Node {
 
-	public BankWalk(AbstractScript _script) {
-		super(_script);
+	public BankWalk(AbstractScript script) {
+		super(script);
 	}
 
 	@Override

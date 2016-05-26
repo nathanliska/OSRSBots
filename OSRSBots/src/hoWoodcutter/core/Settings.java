@@ -13,8 +13,8 @@ public class Settings {
 		return location;
 	}
 	
-	public void SetLocations(Locations _location) {
-		location = _location;
+	public void SetLocations(Locations location) {
+		Settings.location = location;
 	}
 	
 }

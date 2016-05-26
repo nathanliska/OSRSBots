@@ -11,9 +11,9 @@ public enum Trees {
     private String logName;
     private String treeName;
 
-    Trees(String _logName, String _treeName) {
-        this.logName = _logName;
-      	this.treeName = _treeName;
+    Trees(String logName, String treeName) {
+        this.logName = logName;
+      	this.treeName = treeName;
     }
 
     public String getLogName() {

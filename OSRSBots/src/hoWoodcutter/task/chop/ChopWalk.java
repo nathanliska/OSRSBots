@@ -9,8 +9,8 @@ import hoWoodcutter.core.Settings;
 
 public class ChopWalk extends Node {
 
-	public ChopWalk(AbstractScript _script) {
-		super(_script);
+	public ChopWalk(AbstractScript script) {
+		super(script);
 	}
 
 	@Override

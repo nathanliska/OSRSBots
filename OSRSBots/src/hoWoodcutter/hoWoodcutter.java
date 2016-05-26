@@ -62,8 +62,10 @@ public class hoWoodcutter extends AbstractScript {
 	@Override
 	public int onLoop() {
 		if(shouldStart) {
-			locations = new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea());
-			settings.SetLocations(locations);
+			if(locations == null) {
+				locations = new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea());
+				settings.SetLocations(locations);
+			}
 			for (final Node node : nodeArray) {
 				if (node.validate()) {
 					node.execute();
@@ -101,7 +103,7 @@ public class hoWoodcutter extends AbstractScript {
 	
 	@Override
 	public void onPause() {
-		log("IS THIS EVEN RUNNING"); //no
+		log("IS THIS EVEN RUNNING?"); //no
 	}
 	
 	@Override

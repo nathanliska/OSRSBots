@@ -9,8 +9,8 @@ import hoWoodcutter.core.Settings;
 
 public class Bank extends Node {
 
-	public Bank(AbstractScript _script) {
-		super(_script);
+	public Bank(AbstractScript script) {
+		super(script);
 	}
 
 	@Override

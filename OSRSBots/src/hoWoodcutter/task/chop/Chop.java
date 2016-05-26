@@ -9,8 +9,8 @@ import hoWoodcutter.core.Settings;
 
 public class Chop extends Node {
 
-	public Chop(AbstractScript _script) {
-		super(_script);
+	public Chop(AbstractScript script) {
+		super(script);
 	}
 
 	@Override

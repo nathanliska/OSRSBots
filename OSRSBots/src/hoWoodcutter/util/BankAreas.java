@@ -29,9 +29,9 @@ public enum BankAreas {
 	private String stringArea;
 	private Area area;
 	
-	BankAreas(String _stringArea, Area _area) {
-		this.stringArea = _stringArea;
-		this.area = _area;
+	BankAreas(String stringArea, Area area) {
+		this.stringArea = stringArea;
+		this.area = area;
 	}
 	
 	public String getStringArea() {

@@ -9,8 +9,8 @@ public abstract class Node {
 	public AbstractScript script;
 	
 	//Node constructor takes the script argument
-	public Node(AbstractScript _script) {
-		this.script = _script;
+	public Node(AbstractScript script) {
+		this.script = script;
 	}
 	
 	//Delays node 100-500ms
