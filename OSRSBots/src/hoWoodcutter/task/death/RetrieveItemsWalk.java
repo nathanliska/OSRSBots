@@ -1,4 +1,4 @@
-package hoWoodcutter.death;
+package hoWoodcutter.task.death;
 
 import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.script.AbstractScript;
