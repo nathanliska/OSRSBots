@@ -27,6 +27,10 @@ public class hoWoodcutterGUI extends JFrame {
 	private String[] treeNames = new String[Trees.values().length];
 	private String[] treeAreaNames = new String[TreeAreas.values().length];
 	private String[] bankAreaNames = new String[BankAreas.values().length];
+	
+	private JComboBox treeType;
+	private JComboBox treeArea;
+	private JComboBox bankArea;
 
 	/**
 	 * Launch the application.
@@ -81,14 +85,14 @@ public class hoWoodcutterGUI extends JFrame {
 		JButton btnNewButton = new JButton("Start");
 		btnNewButton.addActionListener(e -> startButtonActionPerformed(e));
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(getAllTreeNames()));
+		treeType = new JComboBox();
+		treeType.setModel(new DefaultComboBoxModel(getAllTreeNames()));
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(getAllTreeAreaNames()));
+		treeArea = new JComboBox();
+		treeArea.setModel(new DefaultComboBoxModel(getAllTreeAreaNames()));
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setModel(new DefaultComboBoxModel(getAllBankAreaNames()));
+		bankArea = new JComboBox();
+		bankArea.setModel(new DefaultComboBoxModel(getAllBankAreaNames()));
 		
 		JLabel lblSelectTypeOf = new JLabel("Select type of logs");
 		
@@ -103,9 +107,9 @@ public class hoWoodcutterGUI extends JFrame {
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(comboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(comboBox_2, 0, 0, Short.MAX_VALUE)
-								.addComponent(comboBox_1, 0, 88, Short.MAX_VALUE))
+								.addComponent(treeType, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(treeArea, 0, 0, Short.MAX_VALUE)
+								.addComponent(bankArea, 0, 88, Short.MAX_VALUE))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblNewLabel_1)
@@ -121,15 +125,15 @@ public class hoWoodcutterGUI extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(treeType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblSelectTypeOf))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(treeArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(bankArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_1))
 					.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
 					.addComponent(btnNewButton))
@@ -137,6 +141,18 @@ public class hoWoodcutterGUI extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 
+	public String getTreeType() {
+		return treeType.getSelectedItem().toString();
+	}
+	
+	public String getTreeArea() {
+		return treeArea.getSelectedItem().toString();
+	}
+	
+	public String getBankArea() {
+		return bankArea.getSelectedItem().toString();
+	}
+	
 	private void startButtonActionPerformed(ActionEvent e) {
 		context.setShouldStart(true);
 	}
