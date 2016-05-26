@@ -38,6 +38,7 @@ public class hoWoodcutter extends AbstractScript {
 
 	private BufferedImage mainPaint = getImage("http://i.imgur.com/TUk704K.jpg");
 	private int logsCut;
+	private int logsHr;
 	private String status;
 	private Timer timeRan;
 	private SkillTracker tracker;
@@ -100,6 +101,8 @@ public class hoWoodcutter extends AbstractScript {
 	@Override
 	public void onPaint(Graphics2D g) {
 		g.drawImage(mainPaint, 316, 3, null);
+		
+		logsHr =  (int) (logsCut * 3600000D / timeRan.elapsed());
 
 		Font font = new Font("Arial", Font.BOLD, 13);
 		g.setFont(font);
@@ -115,7 +118,7 @@ public class hoWoodcutter extends AbstractScript {
 		// Xp Gain/hr
 		g.drawString("" + tracker.getGainedExperiencePerHour(Skill.WOODCUTTING), 435, 82);
 		// Gp/hr
-		g.drawString("" + settings.getLocations().getTree().getLogPrice() * logsCut * (int) 3600000D / timeRan.elapsed(), 435, 98);
+		g.drawString("" + settings.getLocations().getTree().getLogPrice() * logsHr, 435, 98);
 		// Current Status
 		g.drawString("Status: " + status, 185, 333);
 		
