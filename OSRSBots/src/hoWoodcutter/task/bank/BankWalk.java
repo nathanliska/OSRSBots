@@ -33,7 +33,7 @@ public class BankWalk extends Node {
 				public boolean verify() {
 					return script.getClient().getLocalPlayer().isMoving();
 				}
-			}, Calculations.random(9000, 11000));
+			}, Calculations.random(5000, 7000));
 		}
 	}
 
