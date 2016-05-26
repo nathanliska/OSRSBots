@@ -95,7 +95,18 @@ public class hoWoodcutter extends AbstractScript {
 		//Xp Gain/hr
 		g.drawString("" + tracker.getGainedExperiencePerHour(Skill.WOODCUTTING), 435, 77);
 		//Time Elapsed
-		g.drawString("" + timeRan.formatTime(), 435, 96);
+		g.drawString("" + timeRan.formatTime(), 435, 94);
+		
+	}
+	
+	@Override
+	public void onPause() {
+		log("IS THIS EVEN RUNNING"); //no
+	}
+	
+	@Override
+	public void onResume() {
+		
 	}
 	
 	private BufferedImage getImage(String url) {

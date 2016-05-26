@@ -1,6 +1,8 @@
 package hoWoodcutter.task.chop;
 
+import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.script.AbstractScript;
+import org.dreambot.api.wrappers.interactive.GameObject;
 
 import hoWoodcutter.core.Node;
 import hoWoodcutter.core.Settings;
@@ -23,8 +25,14 @@ public class Chop extends Node {
 
 	@Override
 	public void execute() {
-		// TODO CHOP DOWN TREES IN TREE AREA.
-		
+		GameObject tree = script.getGameObjects().closest(gameObject -> gameObject != null && gameObject.getName().equals(Settings.location.getTree().getTreeName())
+				&& gameObject.hasAction("Chop down"));
+
+		if(tree.interact("Chop down")) {
+			int countLog = script.getInventory().count(Settings.location.getTree().getLogName());
+			AbstractScript.sleepUntil(() -> script.getInventory().count(Settings.location.getTree().getLogName()) > countLog, 
+					Calculations.random(11000, 13000));
+		}
 	}
 
 }
