@@ -4,10 +4,14 @@ import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.script.Category;
 import org.dreambot.api.script.ScriptManifest;
-import org.dreambot.api.wrappers.interactive.GameObject;
+
+import hoWoodcutter.core.Node;
+import hoWoodcutter.task.bank.Bank;
 
 @ScriptManifest(category = Category.WOODCUTTING, name = "hoWoodcutter", description = "Gets the wood, ya dummy.", author = "HeatSlinger & Opoz", version = 1.0)
 public class hoWoodcutter extends AbstractScript {
+	
+	private final Node[] nodeArray = new Node[] {new Bank(this)};
 	
 	private boolean shouldStart;
 	private hoWoodcutterGUI gui;
@@ -17,16 +21,17 @@ public class hoWoodcutter extends AbstractScript {
 		gui = new hoWoodcutterGUI(this);
 		gui.setVisible(true);
 		log("Hello, you have started hoWoodcutter by HeatSlinger & Opoz, enjoy!");
+		
+		
 	}
 	
 	@Override
 	public int onLoop() {
 		if(shouldStart) {
-			GameObject tree = getGameObjects().closest(gameObject -> gameObject != null && gameObject.getName().equals("Tree")
-					&& gameObject.hasAction("Chop down"));
-			
-			if(getInventory().isFull()) { //If inventory is full, bank
-				Bank();
+			for (final Node node : nodeArray) {
+				if (node.validate()) {
+					node.execute();
+				}
 			}
 		}
 		return Calculations.random(300, 500);
@@ -40,13 +45,4 @@ public class hoWoodcutter extends AbstractScript {
 	public void setShouldStart(boolean shouldStart) {
 		this.shouldStart = shouldStart;
 	}
-	
-	public void Bank() {
-		
-	}
-	
-	public void Chop() {
-		
-	}
-
 }

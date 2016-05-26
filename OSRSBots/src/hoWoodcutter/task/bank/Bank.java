@@ -18,12 +18,12 @@ public class Bank extends Node {
 	
 	@Override
 	public boolean validate() {
-		return (Settings.location.getBankArea().getArea().contains(script.getLocalPlayer()) );
+		return (Settings.location.getBankArea().getArea().contains(script.getLocalPlayer()) && script.getInventory().isFull());
 	}
 
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
+		// BANK ALL ITEMS.
 		
 	}
 }
