@@ -8,11 +8,11 @@ public class Settings {
 	public Settings() {;
 	}
 	
-	public void setLocation(Locations location) {
+	public void setLocations(Locations location) {
 		this.location = location;
 	}
 	
-	public Locations getLocation() {
+	public Locations getLocations() {
 		return location;
 	}
 }
