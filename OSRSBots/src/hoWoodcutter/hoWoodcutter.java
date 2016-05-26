@@ -66,23 +66,30 @@ public class hoWoodcutter extends AbstractScript {
 
 	@Override
 	public int onLoop() {
-		if (shouldStart) {
-			if (settings == null) {
-				settings = new Settings();
-			} else if (settings.getLocations() == null) {
-				settings.setLocations(new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea()));
-			} else {
-				for (final Node node : nodeArray) {
-					if (node.validate()) {
-						status = node.status();
-						node.execute();
-						node.delay();
-						return 0;
+		
+		try {
+			if (shouldStart) {
+				if (settings == null) {
+					settings = new Settings();
+				} else if (settings.getLocations() == null) {
+					settings.setLocations(new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea()));
+				} else {
+					for (final Node node : nodeArray) {
+						if (node.validate()) {
+							status = node.status();
+							node.execute();
+							node.delay();
+							return 0;
+						}
+						sleep(500);
 					}
-					sleep(500);
 				}
 			}
+		} catch (Exception e){
+			log("Error at :" + status);
+			return 0;
 		}
+		
 		return Calculations.random(300, 500);
 	}
 
@@ -109,7 +116,7 @@ public class hoWoodcutter extends AbstractScript {
 		// Time Elapsed
 		g.drawString("" + timeRan.formatTime(), 435, 94);
 		// Current Status
-		g.drawString("" + status, 213, 333);
+		g.drawString("Status: " + status, 213, 333);
 
 	}
 
