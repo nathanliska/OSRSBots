@@ -7,7 +7,7 @@ public enum TreeAreas {
 	TREE_VARROCK_EAST("Varrock East", new Area()),
 	TREE_VARROCK_WEST("Varrock West", new Area()),
 	TREE_DRAYNOR_NORTH("North of Draynor", new Area(3092, 3288, 3105, 3283, 0)),
-	TREE_DRAYNOR_SE("South-East of Draynor", new Area(3103, 3228, 3121, 3215, 0));
+	TREE_DRAYNOR_SE("South-East of Draynor", new Area(3113, 3229, 3100, 3217, 0));
 	
 	private String stringArea;
 	private Area area;
