@@ -8,11 +8,14 @@ import org.dreambot.api.script.ScriptManifest;
 import hoWoodcutter.core.Locations;
 import hoWoodcutter.core.Node;
 import hoWoodcutter.task.bank.Bank;
+import hoWoodcutter.task.bank.BankWalk;
+import hoWoodcutter.task.chop.Chop;
+import hoWoodcutter.task.chop.ChopWalk;
 
 @ScriptManifest(category = Category.WOODCUTTING, name = "hoWoodcutter", description = "Gets the wood, ya dummy.", author = "HeatSlinger & Opoz", version = 0.1)
 public class hoWoodcutter extends AbstractScript {
 	
-	private final Node[] nodeArray = new Node[] {new Bank(this)};
+	private final Node[] nodeArray = new Node[] {new Bank(this), new BankWalk(this), new Chop(this), new ChopWalk(this)};
 	
 	private boolean shouldStart;
 	private hoWoodcutterGUI gui;
@@ -23,7 +26,6 @@ public class hoWoodcutter extends AbstractScript {
 		gui = new hoWoodcutterGUI(this);
 		gui.setVisible(true);
 		log("Hello, you have started hoWoodcutter by HeatSlinger & Opoz, enjoy!");
-		
 		
 	}
 	
