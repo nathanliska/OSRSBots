@@ -13,7 +13,7 @@ public class Bank extends Node {
 
 	@Override
 	public String status() {
-		return "Banking.";
+		return "Banking some wood.";
 	}
 	
 	@Override
@@ -24,6 +24,5 @@ public class Bank extends Node {
 	@Override
 	public void execute() {
 		// TODO BANK ALL ITEMS IN BANK AREA.
-		
 	}
 }
