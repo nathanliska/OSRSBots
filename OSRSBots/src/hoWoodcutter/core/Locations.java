@@ -7,10 +7,10 @@ import hoWoodcutter.util.Trees;
 public class Locations {
 
 	private Trees tree;
-	private BankAreas bankArea;
 	private TreeAreas treeArea;
+	private BankAreas bankArea;
 	
-	Locations(Trees _tree, BankAreas _bankArea, TreeAreas _treeArea) {
+	Locations(Trees _tree, TreeAreas _treeArea, BankAreas _bankArea) {
 		this.tree = _tree;
 		this.bankArea = _bankArea;
 		this.treeArea = _treeArea;
@@ -20,12 +20,11 @@ public class Locations {
 		return tree;
 	}
 	
-	public BankAreas getBankArea() {
-		return bankArea;
-	}
-	
 	public TreeAreas getTreeArea() {
 		return treeArea;
 	}
 	
+	public BankAreas getBankArea() {
+		return bankArea;
+	}
 }
