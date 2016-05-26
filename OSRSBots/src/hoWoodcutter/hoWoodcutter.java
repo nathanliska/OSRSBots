@@ -19,8 +19,8 @@ import org.dreambot.api.utilities.Timer;
 import org.dreambot.api.wrappers.widgets.message.Message;
 
 import hoWoodcutter.core.Locations;
-import hoWoodcutter.core.Node;
 import hoWoodcutter.core.Settings;
+import hoWoodcutter.task.Node;
 import hoWoodcutter.task.bank.Bank;
 import hoWoodcutter.task.bank.BankWalk;
 import hoWoodcutter.task.chop.Chop;
@@ -30,26 +30,27 @@ import hoWoodcutter.task.flee.Flee;
 @ScriptManifest(category = Category.WOODCUTTING, name = "hoWoodcutter", description = "Gets the wood, ya dummy.", author = "HeatSlinger & Opoz", version = 0.1)
 public class hoWoodcutter extends AbstractScript {
 	
-	private final Node[] nodeArray = new Node[] {new Flee(this), new Bank(this), new BankWalk(this), new Chop(this), new ChopWalk(this)};
-	
 	private boolean shouldStart;
 	private hoWoodcutterGUI gui;
-	private Locations locations;
+	private Node[] nodeArray;
 	private Settings settings;
 	
 	private BufferedImage mainPaint = getImage("https://i.imgur.com/CvlJRqf.jpg");
 	private int logsCut;
+	private String status;
 	private Timer timeRan;
 	private SkillTracker tracker;
 	
 	@Override
 	public void onStart() {
 		gui = new hoWoodcutterGUI(this);
-		gui.setVisible(true);
 		timeRan = new Timer();
 		tracker = new SkillTracker(getClient());
+		nodeArray = new Node[] {new Flee(this), new Bank(this), new BankWalk(this), new Chop(this), new ChopWalk(this)};
+		
+		gui.setVisible(true);
 		tracker.start(Skill.WOODCUTTING);
-		settings = new Settings();
+		
 		log("Hello, you have started hoWoodcutter by HeatSlinger & Opoz, enjoy!");
 	}
 	
@@ -63,16 +64,17 @@ public class hoWoodcutter extends AbstractScript {
 	@Override
 	public int onLoop() {
 		if(shouldStart) {
-			if(locations == null) {
-				locations = new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea());
-				settings.SetLocations(locations);
-			}
+			if(settings != null) {
 			for (final Node node : nodeArray) {
 				if (node.validate()) {
 					node.execute();
+					node.delay();
 					return 0;
 				}
 				sleep(500);
+			}
+			} else {
+				settings = new Settings(new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea()));
 			}
 		}
 		return Calculations.random(300, 500);
@@ -100,16 +102,8 @@ public class hoWoodcutter extends AbstractScript {
 		g.drawString("" + tracker.getGainedExperiencePerHour(Skill.WOODCUTTING), 435, 77);
 		//Time Elapsed
 		g.drawString("" + timeRan.formatTime(), 435, 94);
-		
-	}
-	
-	@Override
-	public void onPause() {
-		
-	}
-	
-	@Override
-	public void onResume() {
+		//Current Status
+		g.drawString("" + status, 400, 300);
 		
 	}
 	
@@ -129,7 +123,7 @@ public class hoWoodcutter extends AbstractScript {
 		return gui;
 	}
 	
-	public Locations getLocations() {
-		return locations;
+	public Settings getSettings() {
+		return settings;
 	}
 }

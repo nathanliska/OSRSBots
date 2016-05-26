@@ -4,12 +4,12 @@ import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.utilities.impl.Condition;
 
-import hoWoodcutter.core.Node;
-import hoWoodcutter.core.Settings;
+import hoWoodcutter.task.Node;
+import hoWoodcutter.hoWoodcutter;
 
 public class Flee extends Node {
 	
-	public Flee(AbstractScript script) {
+	public Flee(hoWoodcutter script) {
 		super(script);
 	}
 
@@ -21,12 +21,12 @@ public class Flee extends Node {
 	@Override
 	public boolean validate() {
 		return (script.getLocalPlayer().isInCombat()
-				&& Settings.location.getBankArea().getArea().contains(script.getLocalPlayer()));
+				&& script.getSettings().getLocations().getBankArea().getArea().contains(script.getLocalPlayer()));
 	}
 
 	@Override
 	public void execute() {
-		if(script.getWalking().walk(Settings.location.getBankArea().getArea().getRandomTile())) {
+		if(script.getWalking().walk(script.getSettings().getLocations().getBankArea().getArea().getRandomTile())) {
 			AbstractScript.sleep(Calculations.random(650, 850)); //buffer so it doesn't double click before movement starts
 			AbstractScript.sleepWhile(new Condition() {
 				

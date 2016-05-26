@@ -4,12 +4,12 @@ import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.wrappers.interactive.NPC;
 
-import hoWoodcutter.core.Node;
-import hoWoodcutter.core.Settings;
+import hoWoodcutter.hoWoodcutter;
+import hoWoodcutter.task.Node;
 
 public class Bank extends Node {
 
-	public Bank(AbstractScript script) {
+	public Bank(hoWoodcutter script) {
 		super(script);
 	}
 
@@ -20,7 +20,7 @@ public class Bank extends Node {
 	
 	@Override
 	public boolean validate() {
-		return (script.getInventory().isFull() && Settings.location.getBankArea().getArea().contains(script.getLocalPlayer()));
+		return (script.getInventory().isFull() && script.getSettings().getLocations().getBankArea().getArea().contains(script.getLocalPlayer()));
 	}
 
 	@Override

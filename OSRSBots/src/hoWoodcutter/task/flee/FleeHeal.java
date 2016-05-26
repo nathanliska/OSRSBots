@@ -4,12 +4,12 @@ import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.utilities.impl.Condition;
 
-import hoWoodcutter.core.Node;
-import hoWoodcutter.core.Settings;
+import hoWoodcutter.hoWoodcutter;
+import hoWoodcutter.task.Node;
 
 public class FleeHeal extends Node {
 	
-	public FleeHeal(AbstractScript script) {
+	public FleeHeal(hoWoodcutter script) {
 		super(script);
 	}
 
@@ -21,7 +21,7 @@ public class FleeHeal extends Node {
 	@Override
 	public boolean validate() {
 		return (script.getLocalPlayer().getHealthPercent() < 90
-				&& Settings.location.getBankArea().getArea().contains(script.getLocalPlayer()) && !script.getInventory().isFull());
+				&& script.getSettings().getLocations().getBankArea().getArea().contains(script.getLocalPlayer()) && !script.getInventory().isFull());
 	}
 
 	@Override
@@ -35,6 +35,6 @@ public class FleeHeal extends Node {
 				return script.getLocalPlayer().getHealthPercent() > 90;
 			}
 		}, Calculations.random(250000, 280000));
-		script.getCamera().rotateToTile(Settings.location.getBankArea().getArea().getRandomTile());
+		script.getCamera().rotateToTile(script.getSettings().getLocations().getBankArea().getArea().getRandomTile());
 	}
 }

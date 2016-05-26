@@ -2,19 +2,15 @@ package hoWoodcutter.core;
 
 public class Settings {
 
-	//Creates references to Locations
-	public static Locations location;
+	//Creates instantiation of Locations
+	private final Locations location;
 	
-	public Settings() {
-		//nothing
+	public Settings(Locations location) {
+		this.location = location;
 	}
 	
-	public Locations getLocation() {
+	public Locations getLocations() {
 		return location;
-	}
-	
-	public void SetLocations(Locations location) {
-		Settings.location = location;
 	}
 	
 }

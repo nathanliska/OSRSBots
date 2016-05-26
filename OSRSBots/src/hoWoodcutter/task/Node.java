@@ -1,15 +1,16 @@
-package hoWoodcutter.core;
+package hoWoodcutter.task;
 
 import org.dreambot.api.methods.Calculations;
-import org.dreambot.api.script.AbstractScript;
+
+import hoWoodcutter.hoWoodcutter;
 
 public abstract class Node {
 	
 	//Script instance to use inside of subclasses
-	public AbstractScript script;
+	public hoWoodcutter script;
 	
 	//Node constructor takes the script argument
-	public Node(AbstractScript script) {
+	public Node(hoWoodcutter script) {
 		this.script = script;
 	}
 	

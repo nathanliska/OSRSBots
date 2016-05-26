@@ -4,15 +4,22 @@ import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.wrappers.interactive.GameObject;
 
-import hoWoodcutter.core.Node;
-import hoWoodcutter.core.Settings;
+import hoWoodcutter.hoWoodcutter;
+import hoWoodcutter.task.Node;
 
 public class Chop extends Node {
 
-	public Chop(AbstractScript script) {
+	public Chop(hoWoodcutter script) {
 		super(script);
 	}
 
+	@Override
+	public int delay() {
+		// TODO: CHANGE DELAYS DEPENDING ON TYPE OF TREE.
+		
+		return 0;
+	}
+	
 	@Override
 	public String status() {
 		return "Chopping down trees.";
@@ -20,22 +27,22 @@ public class Chop extends Node {
 	
 	@Override
 	public boolean validate() {
-		return (!script.getInventory().isFull() && Settings.location.getTreeArea().getArea().contains(script.getLocalPlayer()));
+		return (!script.getInventory().isFull() && script.getSettings().getLocations().getTreeArea().getArea().contains(script.getLocalPlayer()));
 	}
 
 	@Override
 	public void execute() {
-		GameObject tree = script.getGameObjects().closest(gameObject -> gameObject != null && gameObject.getName().equals(Settings.location.getTree().getTreeName())
+		GameObject tree = script.getGameObjects().closest(gameObject -> gameObject != null && gameObject.getName().equals(script.getSettings().getLocations().getTree().getTreeName())
 				&& gameObject.hasAction("Chop down"));
 
 		//should probably make sure you don't cut down trees that are visible but out of the bounding box, keeps happening to me
 		
-		if(tree.interact("Chop down") && Settings.location.getTreeArea().getArea().contains(tree.getTile())) {
-			int countLog = script.getInventory().count(Settings.location.getTree().getLogName());
-			AbstractScript.sleepUntil(() -> script.getInventory().count(Settings.location.getTree().getLogName()) > countLog, 
-					Calculations.random(11000, 13000));
+		if(tree.interact("Chop down") && script.getSettings().getLocations().getTreeArea().getArea().contains(tree.getTile())) {
+			int countLog = script.getInventory().count(script.getSettings().getLocations().getTree().getLogName());
+			AbstractScript.sleepUntil(() -> script.getInventory().count(script.getSettings().getLocations().getTree().getLogName()) > countLog, 
+					Calculations.random(13000, 15000));
 		} else {
-			script.getWalking().walk(Settings.location.getTreeArea().getArea().getCenter());
+			script.getWalking().walk(script.getSettings().getLocations().getTreeArea().getArea().getCenter());
 		}
 	}
 
