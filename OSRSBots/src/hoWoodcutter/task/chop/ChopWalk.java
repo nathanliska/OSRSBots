@@ -23,7 +23,9 @@ public class ChopWalk extends Node {
 
 	@Override
 	public void execute() {
-		// TODO WALK TO TREE AREA AND CUT SPECIFIED TREE.
+		if(script.getWalking().walk(Settings.location.getTreeArea().getArea().getRandomTile())) {
+			
+		}
 		
 	}
 

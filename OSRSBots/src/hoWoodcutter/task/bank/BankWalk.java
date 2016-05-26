@@ -23,8 +23,9 @@ public class BankWalk extends Node {
 
 	@Override
 	public void execute() {
-		// TODO WALK TO BANK AREA.
-		
+		if(script.getWalking().walk(Settings.location.getBankArea().getArea().getRandomTile())) {
+			
+		}
 	}
 
 }
