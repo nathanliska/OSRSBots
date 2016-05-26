@@ -47,4 +47,8 @@ public class hoWoodcutter extends AbstractScript {
 	public void setShouldStart(boolean shouldStart) {
 		this.shouldStart = shouldStart;
 	}
+	
+	public hoWoodcutterGUI getGUI() {
+		return gui;
+	}
 }
