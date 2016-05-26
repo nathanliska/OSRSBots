@@ -67,9 +67,9 @@ public class hoWoodcutter extends AbstractScript {
 				for (final Node node : nodeArray) {
 					if (node.validate()) {
 						node.execute();
-						status = node.status();
+						node.delay();
+						// TRYING TO PRINT THE STATUS - LOOK IN PAINT.
 					}
-					sleep(200);
 				}	
 			}else{
 				settings = new Settings(new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea()));

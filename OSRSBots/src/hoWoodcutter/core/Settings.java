@@ -2,7 +2,7 @@ package hoWoodcutter.core;
 
 public class Settings {
 
-	//Creates references to Locations
+	//Creates instantiation of Locations
 	private final Locations location;
 	
 	public Settings(Locations location) {
