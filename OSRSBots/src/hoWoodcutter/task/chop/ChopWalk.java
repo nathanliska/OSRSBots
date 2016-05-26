@@ -18,7 +18,7 @@ public class ChopWalk extends Node {
 	
 	@Override
 	public boolean validate() {
-		return (!script.getInventory().isFull() && Settings.location.getTreeArea().getArea().contains(script.getLocalPlayer()));
+		return (!script.getInventory().isFull() && !Settings.location.getTreeArea().getArea().contains(script.getLocalPlayer()));
 	}
 
 	@Override
