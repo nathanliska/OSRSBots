@@ -10,7 +10,7 @@ public class Locations {
 	private TreeAreas treeArea;
 	private BankAreas bankArea;
 	
-	Locations(String _tree, String _treeArea, String _bankArea) {
+	public Locations(String _tree, String _treeArea, String _bankArea) {
 		this.tree = parseToTree(_tree);
 		this.treeArea = parseToTreeArea(_treeArea);
 		this.bankArea = parseToBankArea(_bankArea);
