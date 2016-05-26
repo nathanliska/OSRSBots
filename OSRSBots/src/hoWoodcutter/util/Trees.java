@@ -2,11 +2,11 @@ package hoWoodcutter.util;
 
 public enum Trees {
     NORMAL("Logs", "Tree"),
-    OAK("Oak logs", "Oak tree"),
-    WILLOW("Willow logs", "Willow tree"),
-    MAPLE("Maple logs", "Maple tree"),
-    YEW("Yew logs", "Yew tree"),
-    MAGIC("Magic logs", "Magic tree");
+    OAK("Oak logs", "Oak"),
+    WILLOW("Willow logs", "Willow"),
+    MAPLE("Maple logs", "Maple"),
+    YEW("Yew logs", "Yew"),
+    MAGIC("Magic logs", "Magic");
 
     private String logName;
     private String treeName;
