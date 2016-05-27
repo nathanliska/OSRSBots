@@ -31,20 +31,22 @@ import hoWoodcutter.task.flee.Flee;
 
 @ScriptManifest(category = Category.WOODCUTTING, name = "hoWoodcutter", description = "Gets the wood, ya dummy.", author = "HeatSlinger & Opoz", version = 0.1)
 public class hoWoodcutter extends AbstractScript {
-
+	
 	private boolean shouldStart;
+	private boolean levelUp;
+	private int logsCut;
+	private int logsHr;
+	
+	private String status;
+	
 	private hoWoodcutterGUI gui;
 	private Node[] nodeArray;
 	private Settings settings;
 
 	private BufferedImage mainPaint = getImage("http://i.imgur.com/TUk704K.jpg");
-	private int logsCut;
-	private int logsHr;
-	private String status;
 	private Timer timeRan;
 	private SkillTracker tracker;
 	private Tile deathSpot;
-	private boolean levelUp;
 
 	@Override
 	public void onStart() {
