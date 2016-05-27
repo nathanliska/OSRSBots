@@ -26,6 +26,7 @@ public class Flee extends Node {
 	@Override
 	public void execute() {
 		if (!script.getSettings().getLocations().getBankArea().getArea().contains(script.getLocalPlayer())) {
+			//runs away if in bank
 			while (script.getLocalPlayer().isInCombat()) {
 				if (script.getWalking()
 						.walk(script.getSettings().getLocations().getBankArea().getArea().getRandomTile())) {
@@ -54,6 +55,7 @@ public class Flee extends Node {
 				}
 			}
 		} else if (!script.getSettings().getLocations().getTreeArea().getArea().contains(script.getLocalPlayer())) {
+			//runs away if in tree area
 			while (script.getLocalPlayer().isInCombat()) {
 				if (script.getWalking()
 						.walk(script.getSettings().getLocations().getTreeArea().getArea().getRandomTile())) {
