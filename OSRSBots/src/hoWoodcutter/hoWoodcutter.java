@@ -73,6 +73,7 @@ public class hoWoodcutter extends AbstractScript {
 					settings = new Settings();
 				} else if (settings.getLocations() == null) {
 					settings.setLocations(new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea()));
+					settings.setWorldHop(gui.getWorldHop());
 				} else {
 					for (final Node node : nodeArray) {
 						if (node.validate()) {

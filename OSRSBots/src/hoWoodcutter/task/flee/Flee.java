@@ -35,6 +35,11 @@ public class Flee extends Node {
 					return script.getClient().getLocalPlayer().isMoving();
 				}
 			}, Calculations.random(9000, 11000));
+			//temp world hop until we make a node for it
+			if(!script.getLocalPlayer().isInCombat() && script.getSettings().getWorldHop()) {
+				hoWoodcutter.sleep(5000);
+				script.getWorldHopper().hopWorld(script.getWorlds().getRandomWorld(World -> World.isF2P() == true).getID());
+			}
 		}
 	}
 }
