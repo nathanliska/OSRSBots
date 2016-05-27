@@ -8,7 +8,7 @@ import hoWoodcutter.task.Node;
 import hoWoodcutter.hoWoodcutter;
 
 public class Flee extends Node {
-	
+
 	public Flee(hoWoodcutter script) {
 		super(script);
 	}
@@ -20,25 +20,58 @@ public class Flee extends Node {
 
 	@Override
 	public boolean validate() {
-		return (script.getLocalPlayer().isInCombat()
-				&& !script.getSettings().getLocations().getBankArea().getArea().contains(script.getLocalPlayer()));
+		return (script.getLocalPlayer().isInCombat());
 	}
 
 	@Override
 	public void execute() {
-		if(script.getWalking().walk(script.getSettings().getLocations().getBankArea().getArea().getRandomTile())) {
-			AbstractScript.sleep(Calculations.random(650, 850)); //buffer so it doesn't double click before movement starts
-			AbstractScript.sleepWhile(new Condition() {
-				
-				@Override
-				public boolean verify() {
-					return script.getClient().getLocalPlayer().isMoving();
+		if (!script.getSettings().getLocations().getBankArea().getArea().contains(script.getLocalPlayer())) {
+			if (script.getWalking().walk(script.getSettings().getLocations().getBankArea().getArea().getRandomTile())) {
+				AbstractScript.sleep(Calculations.random(650, 850)); // buffer
+																		// so it
+																		// doesn't
+																		// double
+																		// click
+																		// before
+																		// movement
+																		// starts
+				AbstractScript.sleepWhile(new Condition() {
+
+					@Override
+					public boolean verify() {
+						return script.getClient().getLocalPlayer().isMoving();
+					}
+				}, Calculations.random(9000, 11000));
+				// temp world hop until we make a node for it
+				if (!script.getLocalPlayer().isInCombat() && script.getSettings().getWorldHop()) {
+					hoWoodcutter.sleep(5000);
+					script.getWorldHopper()
+							.hopWorld(script.getWorlds().getRandomWorld(World -> World.isF2P() == true).getID());
 				}
-			}, Calculations.random(9000, 11000));
-			//temp world hop until we make a node for it
-			if(!script.getLocalPlayer().isInCombat() && script.getSettings().getWorldHop()) {
-				hoWoodcutter.sleep(5000);
-				script.getWorldHopper().hopWorld(script.getWorlds().getRandomWorld(World -> World.isF2P() == true).getID());
+			}
+		} else if(!script.getSettings().getLocations().getTreeArea().getArea().contains(script.getLocalPlayer())) {
+			if (script.getWalking().walk(script.getSettings().getLocations().getTreeArea().getArea().getRandomTile())) {
+				AbstractScript.sleep(Calculations.random(650, 850)); // buffer
+																		// so it
+																		// doesn't
+																		// double
+																		// click
+																		// before
+																		// movement
+																		// starts
+				AbstractScript.sleepWhile(new Condition() {
+
+					@Override
+					public boolean verify() {
+						return script.getClient().getLocalPlayer().isMoving();
+					}
+				}, Calculations.random(9000, 11000));
+				// temp world hop until we make a node for it
+				if (!script.getLocalPlayer().isInCombat() && script.getSettings().getWorldHop()) {
+					hoWoodcutter.sleep(5000);
+					script.getWorldHopper()
+							.hopWorld(script.getWorlds().getRandomWorld(World -> World.isF2P() == true).getID());
+				}
 			}
 		}
 	}

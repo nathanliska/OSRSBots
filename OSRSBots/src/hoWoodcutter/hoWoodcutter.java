@@ -10,7 +10,6 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
-import org.dreambot.api.input.mouse.destination.impl.shape.RectangleDestination;
 import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.skills.Skill;
