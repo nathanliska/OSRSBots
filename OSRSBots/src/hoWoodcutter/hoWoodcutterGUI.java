@@ -2,13 +2,10 @@ package hoWoodcutter;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
-import java.lang.reflect.Array;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -57,6 +54,7 @@ public class hoWoodcutterGUI extends JFrame {
 		});
 	}
 
+	@SuppressWarnings("unused")
 	private String[] getAllTreeNames() {
 		for (int i = 0; i < Trees.values().length; i++) {
 			treeNames[i] = Trees.values()[i].getTreeName();
