@@ -43,24 +43,15 @@ public class Chop extends Node {
 								&& gameObject.getName()
 										.equals(script.getSettings().getLocations().getTree().getTreeName())
 								&& script.getSettings().getLocations().getTreeArea().getArea().contains(gameObject)
-								&& script.getMap().canReach(gameObject)
-								&& gameObject.hasAction("Chop down"));
+								&& script.getMap().canReach(gameObject) && gameObject.hasAction("Chop down"));
 
 		// should probably make sure you don't cut down trees that are visible
 		// but out of the bounding box, keeps happening to me
 
 		if (tree.interact("Chop down")) {
 			AbstractScript.sleepUntil(
-					() -> !tree.exists() || script.getInventory().isFull() || script.getLocalPlayer().isInCombat(), // need
-																													// to
-																													// find
-																													// a
-																													// way
-																													// to
-																													// add
-																													// onlevelup
-																													// and
-																													// onrandom
+					() -> !tree.exists() || script.getInventory().isFull() || script.getLocalPlayer().isInCombat(),
+					// need to find a way to add on random
 					Calculations.random(30000, 45000));
 		} else {
 			script.getWalking().walk(script.getSettings().getLocations().getTreeArea().getArea().getCenter());

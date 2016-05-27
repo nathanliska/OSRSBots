@@ -6,8 +6,8 @@ public enum TreeAreas {
 	
 	TREE_VARROCK_EAST("Varrock East", new Area(), new Trees[]{Trees.NORMAL, Trees.OAK}),
 	TREE_VARROCK_WEST("Varrock West", new Area(), new Trees[]{Trees.NORMAL, Trees.OAK}),
-	TREE_DRAYNOR_NORTH("North of Draynor", new Area(3092, 3288, 3105, 3283, 0), new Trees[]{Trees.NORMAL, Trees.OAK}),
-	TREE_DRAYNOR_SE("South-East of Draynor", new Area(3118, 3233, 3096, 3215, 0), new Trees[]{Trees.NORMAL, Trees.OAK});
+	TREE_DRAYNOR_NORTH("North Draynor", new Area(3092, 3288, 3105, 3283, 0), new Trees[]{Trees.NORMAL, Trees.OAK, Trees.MAGIC}),
+	TREE_DRAYNOR_SE("South-East Draynor", new Area(3118, 3233, 3096, 3215, 0), new Trees[]{Trees.NORMAL, Trees.OAK});
 	
 	private String areaString;
 	private Area area;
@@ -35,5 +35,12 @@ public enum TreeAreas {
 	public Trees[] getAreaTrees() {
 		return areaTrees;
 	}
-
+	
+	public String[] getAreaTreesStrings() {
+		String[] temp = new String[getAreaTrees().length];
+		for(int i = 0; i < temp.length; i++) {
+			temp[i] = getAreaTrees()[i].getTreeName();
+		}
+		return temp;
+	}
 }
