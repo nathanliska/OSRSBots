@@ -28,7 +28,8 @@ public class Chop extends Node {
 	@Override
 	public boolean validate() {
 		return (!script.getInventory().isFull()
-				&& script.getSettings().getLocations().getTreeArea().getArea().contains(script.getLocalPlayer()));
+				&& script.getSettings().getLocations().getTreeArea().getArea().contains(script.getLocalPlayer())
+				&& !script.getLevelUp());
 	}
 
 	@Override

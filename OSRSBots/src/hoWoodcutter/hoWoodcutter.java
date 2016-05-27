@@ -3,12 +3,14 @@ package hoWoodcutter;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
 
+import org.dreambot.api.input.mouse.destination.impl.shape.RectangleDestination;
 import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.skills.Skill;
@@ -43,13 +45,14 @@ public class hoWoodcutter extends AbstractScript {
 	private Timer timeRan;
 	private SkillTracker tracker;
 	private Tile deathSpot;
+	private boolean levelUp;
 
 	@Override
 	public void onStart() {
 		gui = new hoWoodcutterGUI(this);
 		timeRan = new Timer();
 		tracker = new SkillTracker(getClient());
-		nodeArray = new Node[] {/*new RetrieveItems(this), new RetrieveItemsWalk(this),*/ new Flee(this), new Bank(this), new BankWalk(this), new Chop(this), new ChopWalk(this) };
+		nodeArray = new Node[] {new Flee(this), new Bank(this), new BankWalk(this), new Chop(this), new ChopWalk(this) };
 		
 		gui.setVisible(true);
 		tracker.start(Skill.WOODCUTTING);
@@ -61,6 +64,11 @@ public class hoWoodcutter extends AbstractScript {
 	public void onMessage(Message message) {
 		if (message.getMessage().contains("You get some")) { // ayyy ;)
 			logsCut++;
+		} else if (message.getMessage().contains("Congratulations, you just advanced")) {
+			levelUp = true;
+			sleep(Calculations.random(300, 900));
+			getMouse().click(new Rectangle(210, 440, 150, 9));
+			levelUp = false;
 		}
 	}
 
@@ -152,5 +160,9 @@ public class hoWoodcutter extends AbstractScript {
 
 	public Tile getDeathSpot() {
 		return deathSpot;
+	}
+	
+	public boolean getLevelUp() {
+		return levelUp;
 	}
 }

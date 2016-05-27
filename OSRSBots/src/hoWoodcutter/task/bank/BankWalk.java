@@ -17,18 +17,26 @@ public class BankWalk extends Node {
 	public String status() {
 		return "Walking to bank.";
 	}
-	
+
 	@Override
 	public boolean validate() {
-		return (script.getInventory().isFull() && !script.getSettings().getLocations().getBankArea().getArea().contains(script.getLocalPlayer()));
+		return (script.getInventory().isFull()
+				&& !script.getSettings().getLocations().getBankArea().getArea().contains(script.getLocalPlayer())
+				&& !script.getLevelUp());
 	}
 
 	@Override
 	public void execute() {
-		if(script.getWalking().walk(script.getSettings().getLocations().getBankArea().getArea().getRandomTile())) {
-			AbstractScript.sleep(Calculations.random(650, 850)); //buffer so it doesn't double click before movement starts
+		if (script.getWalking().walk(script.getSettings().getLocations().getBankArea().getArea().getRandomTile())) {
+			AbstractScript.sleep(Calculations.random(650, 850)); // buffer so it
+																	// doesn't
+																	// double
+																	// click
+																	// before
+																	// movement
+																	// starts
 			AbstractScript.sleepWhile(new Condition() {
-				
+
 				@Override
 				public boolean verify() {
 					return script.getClient().getLocalPlayer().isMoving();

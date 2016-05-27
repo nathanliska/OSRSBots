@@ -17,25 +17,33 @@ public class ChopWalk extends Node {
 	public String status() {
 		return "Walking to trees.";
 	}
-	
+
 	@Override
 	public boolean validate() {
-		return (!script.getInventory().isFull() && !script.getSettings().getLocations().getTreeArea().getArea().contains(script.getLocalPlayer()));
+		return (!script.getInventory().isFull()
+				&& !script.getSettings().getLocations().getTreeArea().getArea().contains(script.getLocalPlayer())
+				&& !script.getLevelUp());
 	}
 
 	@Override
 	public void execute() {
-		if(script.getWalking().walk(script.getSettings().getLocations().getTreeArea().getArea().getRandomTile())) {
-			AbstractScript.sleep(Calculations.random(450, 550)); //buffer so it doesn't double click before movement starts
+		if (script.getWalking().walk(script.getSettings().getLocations().getTreeArea().getArea().getRandomTile())) {
+			AbstractScript.sleep(Calculations.random(450, 550)); // buffer so it
+																	// doesn't
+																	// double
+																	// click
+																	// before
+																	// movement
+																	// starts
 			AbstractScript.sleepWhile(new Condition() {
-				
+
 				@Override
 				public boolean verify() {
 					return script.getClient().getLocalPlayer().isMoving();
 				}
 			}, Calculations.random(3000, 5000));
 		}
-		
+
 	}
 
 }
