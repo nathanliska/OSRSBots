@@ -52,5 +52,4 @@ public class Chop extends Node {
 			script.getWalking().walk(script.getSettings().getLocations().getTreeArea().getArea().getCenter());
 		}
 	}
-
 }
