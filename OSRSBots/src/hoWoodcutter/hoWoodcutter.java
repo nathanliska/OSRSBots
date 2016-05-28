@@ -79,7 +79,7 @@ public class hoWoodcutter extends AbstractScript {
 	@Override
 	public int onLoop() {
 		
-		//try {
+		try {
 			if (shouldStart) {
 				if (settings == null) {
 					settings = new Settings();
@@ -98,16 +98,10 @@ public class hoWoodcutter extends AbstractScript {
 					}
 				}
 			}
-		//} catch (Exception e){
-			// uncomment for testing
-		//	log(e.getStackTrace()[1].toString());
-		//	log(e.getStackTrace()[2].toString());
-		//	log(e.getStackTrace()[3].toString());
-		//	log(e.getStackTrace()[4].toString());
-		//	log(e.getStackTrace()[5].toString());
-		//	log("Error at :" + status);
-		//	return 0;
-		//}
+		} catch (Exception e){
+			log("Error at :" + status);
+			return 0;
+		}
 		
 		return Calculations.random(300, 500);
 	}
