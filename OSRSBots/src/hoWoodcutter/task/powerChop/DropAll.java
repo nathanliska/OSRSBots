@@ -1,4 +1,4 @@
-package hoWoodcutter.task.PowerChop;
+package hoWoodcutter.task.powerChop;
 
 import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.script.AbstractScript;

@@ -23,12 +23,12 @@ import org.dreambot.api.wrappers.widgets.message.Message;
 import hoWoodcutter.core.Locations;
 import hoWoodcutter.core.Settings;
 import hoWoodcutter.task.Node;
-import hoWoodcutter.task.PowerChop.DropAll;
 import hoWoodcutter.task.bank.Bank;
 import hoWoodcutter.task.bank.BankWalk;
 import hoWoodcutter.task.chop.Chop;
 import hoWoodcutter.task.chop.ChopWalk;
 import hoWoodcutter.task.flee.Flee;
+import hoWoodcutter.task.powerChop.DropAll;
 
 @ScriptManifest(category = Category.WOODCUTTING, name = "hoWoodcutter", description = "Gets the wood, ya dummy.", author = "HeatSlinger & Opoz", version = 0.2)
 public class hoWoodcutter extends AbstractScript {
