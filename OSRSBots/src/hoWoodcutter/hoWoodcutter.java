@@ -57,7 +57,6 @@ public class hoWoodcutter extends AbstractScript {
 		
 		gui.setVisible(true);
 		tracker.start(Skill.WOODCUTTING);
-
 		log("Hello, you have started hoWoodcutter version " + getVersion() + " by HeatSlinger & Opoz, enjoy!");
 	}
 
