@@ -42,5 +42,4 @@ public enum BankAreas {
 	public Area getArea() {
 		return area;
 	}
-
 }
