@@ -71,7 +71,7 @@ public class hoWoodcutterGUI extends JFrame {
 
 	private String[] getAllBankAreaNames() {
 		for (int i = 0; i < BankAreas.values().length; i++) {
-			bankAreaNames[i] = BankAreas.values()[i].getStringArea();
+			bankAreaNames[i] = BankAreas.values()[i].getAreaName();
 		}
 		return bankAreaNames;
 	}
@@ -169,14 +169,32 @@ public class hoWoodcutterGUI extends JFrame {
 	}
 
 	public Trees getTreeType() {
+		for(int i = 0; i < Trees.values().length; i++) {
+			if(Trees.values()[i].getTreeName().equals(treeType.getSelectedItem())) {
+				return Trees.values()[i];
+			}
+		}
+		hoWoodcutter.log("Something wen't wrong in type");
 		return Trees.values()[treeType.getSelectedIndex()];
 	}
 
 	public TreeAreas getTreeArea() {
+		for(int i = 0; i < TreeAreas.values().length; i++) {
+			if(TreeAreas.values()[i].getAreaName().equals(treeArea.getSelectedItem())) {
+				return TreeAreas.values()[i];
+			}
+		}
+		hoWoodcutter.log("Something wen't wrong in tree area");
 		return TreeAreas.values()[treeArea.getSelectedIndex()];
 	}
 
 	public BankAreas getBankArea() {
+		for(int i = 0; i < BankAreas.values().length; i++) {
+			if(BankAreas.values()[i].getAreaName().equals(bankArea.getSelectedItem())) {
+				return BankAreas.values()[i];
+			}
+		}
+		hoWoodcutter.log("Something wen't wrong in bank area");
 		return BankAreas.values()[bankArea.getSelectedIndex()];
 	}
 

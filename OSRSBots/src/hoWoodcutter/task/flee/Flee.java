@@ -70,11 +70,12 @@ public class Flee extends Node {
 					}, Calculations.random(9000, 11000));
 					// temp world hop until we make a node for it
 					if (!script.getLocalPlayer().isInCombat() && script.getSettings().getWorldHop()) {
-						hoWoodcutter.sleep(5000);
+						hoWoodcutter.sleep(Calculations.random(5000, 6000));
 						if (script.getClient().getMembershipLeft() < 0) {
 							// hop to f2p
 							script.getWorldHopper().hopWorld(
 									script.getWorlds().getRandomWorld(World -> World.isF2P() == true).getID());
+							hoWoodcutter.sleep(Calculations.random(3000, 4000));
 						} else {
 							// hop to members
 							script.getWorldHopper().hopWorld(
