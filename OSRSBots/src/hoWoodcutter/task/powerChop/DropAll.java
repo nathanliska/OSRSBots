@@ -14,7 +14,7 @@ public class DropAll extends Node {
 
 	@Override
 	public String status() {
-		return "Chopping down trees. FOREVER.";
+		return "Droppin' logs.";
 	}
 
 	@Override
