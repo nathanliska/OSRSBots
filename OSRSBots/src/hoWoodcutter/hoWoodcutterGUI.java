@@ -28,8 +28,6 @@ public class hoWoodcutterGUI extends JFrame {
 	private JPanel contentPane;
 
 	private String[] treeNames = new String[Trees.values().length];
-	private String[] treeAreaNames = new String[TreeAreas.values().length];
-	private String[] bankAreaNames = new String[BankAreas.values().length];
 
 	@SuppressWarnings("rawtypes")
 	private JComboBox treeType;
