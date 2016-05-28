@@ -60,29 +60,6 @@ public class hoWoodcutterGUI extends JFrame {
 		});
 	}
 
-	private String[] getAllTreeNames() {
-		for (int i = 0; i < Trees.values().length; i++) {
-			treeNames[i] = Trees.values()[i].getTreeName();
-		}
-		return treeNames;
-	}
-
-	@SuppressWarnings("unused")
-	private String[] getAllTreeAreaNames() {
-		for (int i = 0; i < TreeAreas.values().length; i++) {
-			treeAreaNames[i] = TreeAreas.values()[i].getAreaName();
-		}
-		return treeAreaNames;
-	}
-
-	@SuppressWarnings("unused")
-	private String[] getAllBankAreaNames() {
-		for (int i = 0; i < BankAreas.values().length; i++) {
-			bankAreaNames[i] = BankAreas.values()[i].getAreaName();
-		}
-		return bankAreaNames;
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -182,6 +159,13 @@ public class hoWoodcutterGUI extends JFrame {
 						.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
 						.addComponent(btnStartButton)));
 		contentPane.setLayout(gl_contentPane);
+	}
+
+	private String[] getAllTreeNames() {
+		for (int i = 0; i < Trees.values().length; i++) {
+			treeNames[i] = Trees.values()[i].getTreeName();
+		}
+		return treeNames;
 	}
 
 	public Trees getTreeType() {
