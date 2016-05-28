@@ -24,7 +24,7 @@ public enum TreeAreas {
 		this.areaTrees = areaTrees;
 	}
 	
-	public String getStringArea() {
+	public String getAreaName() {
 		return areaString;
 	}
 	

@@ -54,7 +54,6 @@ public class hoWoodcutterGUI extends JFrame {
 		});
 	}
 
-	@SuppressWarnings("unused")
 	private String[] getAllTreeNames() {
 		for (int i = 0; i < Trees.values().length; i++) {
 			treeNames[i] = Trees.values()[i].getTreeName();
@@ -62,9 +61,10 @@ public class hoWoodcutterGUI extends JFrame {
 		return treeNames;
 	}
 
+	@SuppressWarnings("unused")
 	private String[] getAllTreeAreaNames() {
 		for (int i = 0; i < TreeAreas.values().length; i++) {
-			treeAreaNames[i] = TreeAreas.values()[i].getStringArea();
+			treeAreaNames[i] = TreeAreas.values()[i].getAreaName();
 		}
 		return treeAreaNames;
 	}
@@ -92,14 +92,19 @@ public class hoWoodcutterGUI extends JFrame {
 
 		JButton btnStartButton = new JButton("Start");
 		btnStartButton.addActionListener(e -> startButtonActionPerformed(e));
-
-		treeArea = new JComboBox();
-		treeArea.setModel(new DefaultComboBoxModel(getAllTreeAreaNames()));
-		treeArea.addActionListener(e -> treeAreaActionPerformed(e));
-
+		
 		treeType = new JComboBox();
-		treeType.setModel(
-				new DefaultComboBoxModel(TreeAreas.values()[treeArea.getSelectedIndex()].getAreaTreesStrings()));
+		treeType.setModel(new DefaultComboBoxModel(getAllTreeNames()));
+		treeType.addActionListener(e -> treeTypeActionPerformed(e));
+		
+		treeArea = new JComboBox();
+		if(Trees.values()[treeType.getSelectedIndex()].getTreeAreasStrings() != null) {
+		treeArea.setModel(
+				new DefaultComboBoxModel(Trees.values()[treeType.getSelectedIndex()].getTreeAreasStrings()));
+		} else {
+			treeArea.setModel(
+				new DefaultComboBoxModel(new String[] {""}));
+		}
 
 		bankArea = new JComboBox();
 		bankArea.setModel(new DefaultComboBoxModel(getAllBankAreaNames()));
@@ -121,16 +126,17 @@ public class hoWoodcutterGUI extends JFrame {
 										Alignment.LEADING).addGroup(gl_contentPane
 												.createSequentialGroup().addContainerGap()
 												.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-														.addComponent(treeArea, 0, GroupLayout.DEFAULT_SIZE,
+														.addComponent(treeType, 0, GroupLayout.DEFAULT_SIZE, 
 																Short.MAX_VALUE)
-														.addComponent(treeType, 0, 0, Short.MAX_VALUE)
+														.addComponent(treeArea, 0, 0,
+																Short.MAX_VALUE)
 														.addComponent(bankArea, 0, 88, Short.MAX_VALUE)
 														.addComponent(worldHop, GroupLayout.DEFAULT_SIZE,
 																GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 												.addPreferredGap(ComponentPlacement.UNRELATED)
 												.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-														.addComponent(lblSelectLocation)
 														.addComponent(lblSelectTypeOf)
+														.addComponent(lblSelectLocation)
 														.addComponent(lblSelectBank)))
 										.addGroup(gl_contentPane.createSequentialGroup()
 												.addGap(34)
@@ -139,15 +145,16 @@ public class hoWoodcutterGUI extends JFrame {
 								.addGap(60)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup().addContainerGap()
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(treeArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblSelectLocation))
-						.addPreferredGap(ComponentPlacement.RELATED)
+						
 						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(treeType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblSelectTypeOf))
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(treeArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblSelectLocation))
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(bankArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
@@ -183,8 +190,8 @@ public class hoWoodcutterGUI extends JFrame {
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void treeAreaActionPerformed(ActionEvent e) {
-		treeType.setModel(
-				new DefaultComboBoxModel(TreeAreas.values()[treeArea.getSelectedIndex()].getAreaTreesStrings()));
+	private void treeTypeActionPerformed(ActionEvent e) {
+		treeArea.setModel(
+				new DefaultComboBoxModel(Trees.values()[treeType.getSelectedIndex()].getTreeAreasStrings()));
 	}
 }
