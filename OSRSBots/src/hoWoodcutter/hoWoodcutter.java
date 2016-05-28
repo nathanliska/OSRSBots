@@ -68,6 +68,9 @@ public class hoWoodcutter extends AbstractScript {
 			levelUp = true;
 			sleep(Calculations.random(300, 900));
 			getMouse().click(new Rectangle(210, 440, 150, 9));
+			if (getDialogues().inDialogue()) {
+				getDialogues().spaceToContinue();
+			}
 			levelUp = false;
 		}
 	}
