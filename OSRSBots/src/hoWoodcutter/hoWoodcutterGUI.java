@@ -60,29 +60,6 @@ public class hoWoodcutterGUI extends JFrame {
 		});
 	}
 
-	private String[] getAllTreeNames() {
-		for (int i = 0; i < Trees.values().length; i++) {
-			treeNames[i] = Trees.values()[i].getTreeName();
-		}
-		return treeNames;
-	}
-
-	@SuppressWarnings("unused")
-	private String[] getAllTreeAreaNames() {
-		for (int i = 0; i < TreeAreas.values().length; i++) {
-			treeAreaNames[i] = TreeAreas.values()[i].getAreaName();
-		}
-		return treeAreaNames;
-	}
-
-	@SuppressWarnings("unused")
-	private String[] getAllBankAreaNames() {
-		for (int i = 0; i < BankAreas.values().length; i++) {
-			bankAreaNames[i] = BankAreas.values()[i].getAreaName();
-		}
-		return bankAreaNames;
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -184,6 +161,14 @@ public class hoWoodcutterGUI extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 
+	public boolean getWorldHop() {
+		return worldHop.isSelected();
+	}
+	
+	public boolean getPowerChop() {
+		return powerChop.isSelected();
+	}
+
 	public Trees getTreeType() {
 		for(int i = 0; i < Trees.values().length; i++) {
 			if(Trees.values()[i].getTreeName().equals(treeType.getSelectedItem())) {
@@ -213,13 +198,12 @@ public class hoWoodcutterGUI extends JFrame {
 		hoWoodcutter.log("Something wen't wrong in bank area");
 		return BankAreas.values()[bankArea.getSelectedIndex()];
 	}
-
-	public boolean getWorldHop() {
-		return worldHop.isSelected();
-	}
 	
-	public boolean getPowerChop() {
-		return powerChop.isSelected();
+	private String[] getAllTreeNames() {
+		for (int i = 0; i < Trees.values().length; i++) {
+			treeNames[i] = Trees.values()[i].getTreeName();
+		}
+		return treeNames;
 	}
 
 	private void startButtonActionPerformed(ActionEvent e) {
