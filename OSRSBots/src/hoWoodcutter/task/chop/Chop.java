@@ -43,6 +43,9 @@ public class Chop extends Node {
 		try {
 			if (tree.interact("Chop down")) {
 				AbstractScript.sleep(Calculations.random(1750, 2000));
+				while(script.getLocalPlayer().isMoving()) {
+					AbstractScript.sleep(Calculations.random(1750,2000));
+				}
 				AbstractScript.sleepUntil(
 						() -> !tree.exists() || script.getInventory().isFull() || script.getLocalPlayer().isInCombat()
 								|| !script.getLocalPlayer().isAnimating(),
