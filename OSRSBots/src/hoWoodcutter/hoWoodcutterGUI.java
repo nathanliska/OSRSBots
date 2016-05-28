@@ -18,7 +18,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 
 import hoWoodcutter.util.Trees;
-import sun.util.logging.resources.logging;
 import hoWoodcutter.util.TreeAreas;
 import hoWoodcutter.util.BankAreas;
 
@@ -38,7 +37,10 @@ public class hoWoodcutterGUI extends JFrame {
 	private JComboBox treeArea;
 	@SuppressWarnings("rawtypes")
 	private JComboBox bankArea;
+	
 	private JCheckBox worldHop;
+	private JCheckBox powerChop;
+	
 	private ArrayList<String> displayTreeAreas = new ArrayList<>();
 	private ArrayList<String> displayBankAreas = new ArrayList<>(); 
 
@@ -73,6 +75,7 @@ public class hoWoodcutterGUI extends JFrame {
 		return treeAreaNames;
 	}
 
+	@SuppressWarnings("unused")
 	private String[] getAllBankAreaNames() {
 		for (int i = 0; i < BankAreas.values().length; i++) {
 			bankAreaNames[i] = BankAreas.values()[i].getAreaName();
@@ -122,12 +125,16 @@ public class hoWoodcutterGUI extends JFrame {
 
 		worldHop = new JCheckBox("World Hop if attacked?");
 		worldHop.setSelected(true);
+		
+		powerChop = new JCheckBox("Power Chop?");
+		powerChop.setSelected(false);
 
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane
-				.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(
-						gl_contentPane
-								.createSequentialGroup().addGroup(gl_contentPane.createParallelGroup(
+				.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane
+								.createSequentialGroup()
+								.addGroup(gl_contentPane.createParallelGroup(
 										Alignment.LEADING).addGroup(gl_contentPane
 												.createSequentialGroup().addContainerGap()
 												.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
@@ -135,8 +142,10 @@ public class hoWoodcutterGUI extends JFrame {
 																Short.MAX_VALUE)
 														.addComponent(treeArea, 0, 0,
 																Short.MAX_VALUE)
-														.addComponent(bankArea, 0, 88, Short.MAX_VALUE)
+														.addComponent(bankArea, 0, 0, Short.MAX_VALUE)
 														.addComponent(worldHop, GroupLayout.DEFAULT_SIZE,
+																88, Short.MAX_VALUE)
+														.addComponent(powerChop, GroupLayout.DEFAULT_SIZE,
 																GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 												.addPreferredGap(ComponentPlacement.UNRELATED)
 												.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -150,7 +159,6 @@ public class hoWoodcutterGUI extends JFrame {
 								.addGap(60)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup().addContainerGap()
-						
 						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(treeType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.PREFERRED_SIZE)
@@ -168,6 +176,9 @@ public class hoWoodcutterGUI extends JFrame {
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(worldHop, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(powerChop, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
 						.addComponent(btnStartButton)));
 		contentPane.setLayout(gl_contentPane);
@@ -205,6 +216,10 @@ public class hoWoodcutterGUI extends JFrame {
 
 	public boolean getWorldHop() {
 		return worldHop.isSelected();
+	}
+	
+	public boolean getPowerChop() {
+		return powerChop.isSelected();
 	}
 
 	private void startButtonActionPerformed(ActionEvent e) {

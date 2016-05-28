@@ -23,6 +23,7 @@ import org.dreambot.api.wrappers.widgets.message.Message;
 import hoWoodcutter.core.Locations;
 import hoWoodcutter.core.Settings;
 import hoWoodcutter.task.Node;
+import hoWoodcutter.task.PowerChop.DropAll;
 import hoWoodcutter.task.bank.Bank;
 import hoWoodcutter.task.bank.BankWalk;
 import hoWoodcutter.task.chop.Chop;
@@ -53,7 +54,7 @@ public class hoWoodcutter extends AbstractScript {
 		gui = new hoWoodcutterGUI(this);
 		timeRan = new Timer();
 		tracker = new SkillTracker(getClient());
-		nodeArray = new Node[] { new Flee(this), new Bank(this), new BankWalk(this), new Chop(this), new ChopWalk(this) };
+		nodeArray = new Node[] { new Flee(this), new DropAll(this), new Bank(this), new BankWalk(this), new Chop(this), new ChopWalk(this) };
 		
 		gui.setVisible(true);
 		tracker.start(Skill.WOODCUTTING);
@@ -82,9 +83,11 @@ public class hoWoodcutter extends AbstractScript {
 			if (shouldStart) {
 				if (settings == null) {
 					settings = new Settings();
-				} else if (settings.getLocations() == null) {
+				}
+				if (settings.getLocations() == null) {
 					settings.setLocations(new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea()));
 					settings.setWorldHop(gui.getWorldHop());
+					settings.setPowerChop(gui.getPowerChop());
 				} else {
 					for (final Node node : nodeArray) {
 						if (node.validate()) {
