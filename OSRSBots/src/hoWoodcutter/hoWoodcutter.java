@@ -179,8 +179,13 @@ public class hoWoodcutter extends AbstractScript {
 			counter++;
 		}
 		return null;*/
+		if(hoWoodcutter.class
+					.getResourceAsStream(url) == null) {
+			log("Couldn't get the paint");
+		}
 		try {
-			return ImageIO.read(hoWoodcutter.class.getResourceAsStream(url));
+			return ImageIO.read(hoWoodcutter.class
+					.getResourceAsStream(url));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
