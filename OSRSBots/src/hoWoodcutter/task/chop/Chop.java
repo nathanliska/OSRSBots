@@ -12,14 +12,7 @@ public class Chop extends Node {
 	public Chop(hoWoodcutter script) {
 		super(script);
 	}
-
-	@Override
-	public int delay() {
-		// TODO: CHANGE DELAYS DEPENDING ON TYPE OF TREE.
-
-		return 0;
-	}
-
+	
 	@Override
 	public String status() {
 		return "Chopping down trees.";
