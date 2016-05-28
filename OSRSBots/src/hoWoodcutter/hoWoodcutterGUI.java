@@ -18,6 +18,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 
 import hoWoodcutter.util.Trees;
+import sun.util.logging.resources.logging;
 import hoWoodcutter.util.TreeAreas;
 import hoWoodcutter.util.BankAreas;
 
@@ -38,7 +39,8 @@ public class hoWoodcutterGUI extends JFrame {
 	@SuppressWarnings("rawtypes")
 	private JComboBox bankArea;
 	private JCheckBox worldHop;
-	private ArrayList<String> displayAreas = new ArrayList<>(); 
+	private ArrayList<String> displayTreeAreas = new ArrayList<>();
+	private ArrayList<String> displayBankAreas = new ArrayList<>(); 
 
 	/**
 	 * Launch the application.
@@ -96,23 +98,22 @@ public class hoWoodcutterGUI extends JFrame {
 		btnStartButton.addActionListener(e -> startButtonActionPerformed(e));
 		
 		treeType = new JComboBox();
-		treeType.setModel(new DefaultComboBoxModel(getAllTreeNames()));
-		treeType.addActionListener(e -> treeTypeActionPerformed(e));
-		
 		treeArea = new JComboBox();
-		updateDisplayAreas();
-		treeArea.setModel(new DefaultComboBoxModel(displayAreas.toArray()));
-		/*if(Trees.values()[treeArea.getSelectedIndex()].getTreeAreasStrings() != null) {
-		treeArea.setModel(
-				new DefaultComboBoxModel(Trees.values()[treeType.getSelectedIndex()].getTreeAreasStrings()));
-		} else {
-			treeArea.setModel(
-				new DefaultComboBoxModel(new String[] {""}));
-		}*/
-
 		bankArea = new JComboBox();
-		bankArea.setModel(new DefaultComboBoxModel(getAllBankAreaNames()));
-
+		
+		treeType.addActionListener(e -> treeTypeActionPerformed(e));
+		treeArea.addActionListener(e -> treeAreaActionPerformed(e));
+		
+		treeType.setModel(new DefaultComboBoxModel(getAllTreeNames()));
+		
+		updateDisplayTreeAreas();
+		
+		treeArea.setModel(new DefaultComboBoxModel(displayTreeAreas.toArray()));
+		
+		updateDisplayBankAreas();
+		
+		bankArea.setModel(new DefaultComboBoxModel(displayBankAreas.toArray()));
+		
 		JLabel lblSelectTypeOf = new JLabel("Select type of logs");
 
 		JLabel lblSelectLocation = new JLabel("Select location");
@@ -213,18 +214,40 @@ public class hoWoodcutterGUI extends JFrame {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void treeTypeActionPerformed(ActionEvent e) {
-		updateDisplayAreas();
+		updateDisplayTreeAreas();
+		
 		treeArea.setModel(
-				new DefaultComboBoxModel(displayAreas.toArray()));
+				new DefaultComboBoxModel(displayTreeAreas.toArray()));
+		
+		updateDisplayBankAreas();
+		
+		bankArea.setModel(
+				new DefaultComboBoxModel(displayBankAreas.toArray()));
 	}
 	
-	private void updateDisplayAreas() {
+	private void updateDisplayTreeAreas() {
 		ArrayList<String> temp = new ArrayList<>();
 		for(int i = 0; i < TreeAreas.values().length; i++) {
 			if(TreeAreas.values()[i].getAreaContains(getTreeType())) {
 				temp.add(TreeAreas.values()[i].getAreaName());
 			}
 		}
-		displayAreas = temp;
+		displayTreeAreas = temp;
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void treeAreaActionPerformed(ActionEvent e) {
+		updateDisplayBankAreas();
+		bankArea.setModel(
+				new DefaultComboBoxModel(displayBankAreas.toArray()));
+	}
+	
+	private void updateDisplayBankAreas() {
+		String[] temp = getTreeArea().getBankAreasStrings();
+		ArrayList<String> temp2 = new ArrayList<>();
+		for(int i = 0; i < temp.length; i++) {
+			temp2.add(temp[i]);
+		}
+		displayBankAreas = temp2;
 	}
 }
