@@ -53,12 +53,12 @@ public class hoWoodcutter extends AbstractScript {
 		gui = new hoWoodcutterGUI(this);
 		timeRan = new Timer();
 		tracker = new SkillTracker(getClient());
-		nodeArray = new Node[] {new Flee(this), new Bank(this), new BankWalk(this), new Chop(this), new ChopWalk(this) };
+		nodeArray = new Node[] { new Flee(this), new Bank(this), new BankWalk(this), new Chop(this), new ChopWalk(this) };
 		
 		gui.setVisible(true);
 		tracker.start(Skill.WOODCUTTING);
 
-		log("Hello, you have started hoWoodcutter by HeatSlinger & Opoz, enjoy!");
+		log("Hello, you have started hoWoodcutter version " + getVersion() + " by HeatSlinger & Opoz, enjoy!");
 	}
 
 	@Override
@@ -88,10 +88,10 @@ public class hoWoodcutter extends AbstractScript {
 						if (node.validate()) {
 							status = node.status();
 							node.execute();
-							node.delay();
+							return node.delay();
+						} else {
 							return 0;
 						}
-						sleep(500);
 					}
 				}
 			}
@@ -147,16 +147,16 @@ public class hoWoodcutter extends AbstractScript {
 		this.shouldStart = shouldStart;
 	}
 
+	public void setDeathSpot(Tile spot) {
+		deathSpot = spot;
+	}
+
 	public hoWoodcutterGUI getGUI() {
 		return gui;
 	}
 
 	public Settings getSettings() {
 		return settings;
-	}
-
-	public void setDeathSpot(Tile spot) {
-		deathSpot = spot;
 	}
 
 	public Tile getDeathSpot() {
