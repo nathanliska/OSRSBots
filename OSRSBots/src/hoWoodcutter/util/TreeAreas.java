@@ -16,6 +16,7 @@ public enum TreeAreas {
 	TreeAreas(String areaString, Area area) {
 		this.areaString = areaString;
 		this.area = area;
+		this.areaTrees = null;
 	}
 	
 	TreeAreas(String areaString, Area area, Trees[] areaTrees) {
