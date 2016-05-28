@@ -138,14 +138,6 @@ public class hoWoodcutter extends AbstractScript {
 
 	}
 
-	private BufferedImage getImage(String url) {
-		try {
-			return ImageIO.read(new URL(url));
-		} catch (IOException e) {
-			return null;
-		}
-	}
-
 	public void setShouldStart(boolean shouldStart) {
 		this.shouldStart = shouldStart;
 	}
@@ -168,5 +160,13 @@ public class hoWoodcutter extends AbstractScript {
 	
 	public boolean getLevelUp() {
 		return levelUp;
+	}
+	
+	private BufferedImage getImage(String url) {
+		try {
+			return ImageIO.read(new URL(url));
+		} catch (IOException e) {
+			return null;
+		}
 	}
 }
