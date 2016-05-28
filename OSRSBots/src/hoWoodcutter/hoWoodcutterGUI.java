@@ -2,25 +2,23 @@ package hoWoodcutter;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
-import java.io.File;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
 
-import hoWoodcutter.util.Trees;
-import hoWoodcutter.util.TreeAreas;
 import hoWoodcutter.util.BankAreas;
+import hoWoodcutter.util.TreeAreas;
+import hoWoodcutter.util.Trees;
 
 @SuppressWarnings("serial")
 public class hoWoodcutterGUI extends JFrame {
