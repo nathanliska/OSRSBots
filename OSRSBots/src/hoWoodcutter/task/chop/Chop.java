@@ -50,9 +50,11 @@ public class Chop extends Node {
 
 		if (tree.interact("Chop down")) {
 			AbstractScript.sleepUntil(
-					() -> !tree.exists() || script.getInventory().isFull() || script.getLocalPlayer().isInCombat(),
+					() -> !tree.exists() || script.getInventory().isFull() || script.getLocalPlayer().isInCombat()
+							|| !script.getLocalPlayer().isAnimating(),
 					// need to find a way to add on random
-					Calculations.random(30000, 45000));
+					Calculations.random(100000, 150000));
+			hoWoodcutter.sleep(250, 750);
 		} else {
 			script.getWalking().walk(script.getSettings().getLocations().getTreeArea().getArea().getCenter());
 		}

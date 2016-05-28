@@ -8,8 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
-
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.GroupLayout;
