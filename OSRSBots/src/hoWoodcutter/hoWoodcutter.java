@@ -5,14 +5,8 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 
 import javax.imageio.ImageIO;
 
@@ -122,8 +116,10 @@ public class hoWoodcutter extends AbstractScript {
 
 	@Override
 	public void onPaint(Graphics2D g) {
-		g.drawImage(mainPaint, 316, 3, null);
-
+		if (mainPaint != null) {
+			g.drawImage(mainPaint, 316, 3, null);
+		}
+		
 		logsHr = (int) (logsCut * 3600000D / timeRan.elapsed());
 
 		Font font = new Font("Arial", Font.BOLD, 13);
@@ -142,6 +138,7 @@ public class hoWoodcutter extends AbstractScript {
 		// Gp/hr
 		g.drawString("" + settings.getLocations().getTree().getLogPrice() * logsHr, 435, 98);
 		// Current Status
+		g.setColor(Color.WHITE);
 		g.drawString("Status: " + status, 185, 333);
 
 	}
@@ -183,18 +180,11 @@ public class hoWoodcutter extends AbstractScript {
 			counter++;
 		}
 		return null;*/
-		InputStream temp;
 		try {
-			temp = new BufferedInputStream(new FileInputStream(url));
-		} catch (FileNotFoundException e) {
-			log("File not found");
-			return null;
+			return ImageIO.read(hoWoodcutter.class.getResourceAsStream(url));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		try {
-			return ImageIO.read(temp);
-		} catch (IOException e1) {
-			log("error reading");
-			return null;
-		}
+		return null;
 	}
 }
