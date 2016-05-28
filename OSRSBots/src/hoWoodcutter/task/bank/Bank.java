@@ -22,11 +22,11 @@ public class Bank extends Node {
 	}
 
 	/**
-	 * Checks if execute() should execute
+	 * Checks if execute() should execute - 
 	 * Requires:
-	 * Inventory to have room
-	 * Be in bank area
-	 * Not be in the process of handling a level up
+	 * inventory to have room,
+	 * be in bank area,
+	 * not be in the process of handling a level up
 	 * @return whether execute() should execute
 	 */
 	@Override
