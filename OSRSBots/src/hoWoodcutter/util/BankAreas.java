@@ -35,7 +35,7 @@ public enum BankAreas {
 		this.area = area;
 	}
 	
-	public String getStringArea() {
+	public String getAreaName() {
 		return stringArea;
 	}
 	

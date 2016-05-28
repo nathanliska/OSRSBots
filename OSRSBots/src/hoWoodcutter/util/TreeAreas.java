@@ -6,7 +6,7 @@ public enum TreeAreas {
 	
 	TREE_VARROCK_EAST("Varrock East", new Area(), new Trees[]{Trees.NORMAL, Trees.OAK}),
 	TREE_VARROCK_WEST("Varrock West", new Area(), new Trees[]{Trees.NORMAL, Trees.OAK}),
-	TREE_DRAYNOR_NORTH("North Draynor", new Area(3092, 3288, 3105, 3283, 0), new Trees[]{Trees.NORMAL, Trees.OAK, Trees.MAGIC}),
+	TREE_DRAYNOR_NORTH("North Draynor", new Area(3092, 3288, 3105, 3283, 0), new Trees[]{Trees.NORMAL, Trees.OAK}),
 	TREE_DRAYNOR_SE("South-East Draynor", new Area(3118, 3233, 3096, 3215, 0), new Trees[]{Trees.NORMAL, Trees.OAK});
 	
 	private String areaString;
