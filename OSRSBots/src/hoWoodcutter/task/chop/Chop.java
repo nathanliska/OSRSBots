@@ -56,5 +56,4 @@ public class Chop extends Node {
 			// tree disappeared before I got there!
 		}
 	}
-
 }
