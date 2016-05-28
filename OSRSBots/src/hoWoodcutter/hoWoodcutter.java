@@ -89,8 +89,6 @@ public class hoWoodcutter extends AbstractScript {
 							status = node.status();
 							node.execute();
 							return node.delay();
-						} else {
-							return 0;
 						}
 					}
 				}
