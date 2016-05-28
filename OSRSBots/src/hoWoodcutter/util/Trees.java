@@ -8,9 +8,9 @@ public enum Trees {
     YEW("Yew logs", "Yew", 391),
     MAGIC("Magic logs", "Magic", 1175);
 
-    private int price;
-    private String logName;
-    private String treeName;
+    private final int price;
+    private final String logName;
+    private final String treeName;
 
     Trees(String logName, String treeName, int price) {
         this.logName = logName;

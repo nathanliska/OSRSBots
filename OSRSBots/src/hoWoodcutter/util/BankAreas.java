@@ -27,8 +27,8 @@ public enum BankAreas {
 	BANK_SEERS(new Area(2720, 3490, 2730, 3500, 0)),
 	*/
 	
-	private String stringArea;
-	private Area area;
+	private final String stringArea;
+	private final Area area;
 	
 	BankAreas(String stringArea, Area area) {
 		this.stringArea = stringArea;

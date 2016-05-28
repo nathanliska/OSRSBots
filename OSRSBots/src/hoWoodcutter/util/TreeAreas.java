@@ -9,15 +9,9 @@ public enum TreeAreas {
 	TREE_DRAYNOR_NORTH("North Draynor", new Area(3092, 3288, 3105, 3283, 0), new Trees[]{Trees.NORMAL, Trees.OAK, Trees.MAGIC}),
 	TREE_DRAYNOR_SE("South-East Draynor", new Area(3118, 3233, 3096, 3215, 0), new Trees[]{Trees.NORMAL, Trees.OAK});
 	
-	private String areaString;
-	private Area area;
-	private Trees[] areaTrees;
-
-	TreeAreas(String areaString, Area area) {
-		this.areaString = areaString;
-		this.area = area;
-		this.areaTrees = null;
-	}
+	private final String areaString;
+	private final Area area;
+	private final Trees[] areaTrees;
 	
 	TreeAreas(String areaString, Area area, Trees[] areaTrees) {
 		this.areaString = areaString;
