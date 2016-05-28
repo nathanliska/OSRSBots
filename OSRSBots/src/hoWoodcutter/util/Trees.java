@@ -10,12 +10,14 @@ public enum Trees {
 
     private String logName;
     private String treeName;
+    private TreeAreas[] treeAreas;
     private int price;
 
-    Trees(String logName, String treeName, int price) {
+    Trees(String logName, String treeName, int price, TreeAreas[] treeAreas) {
         this.logName = logName;
       	this.treeName = treeName;
       	this.price = price;
+      	this.treeAreas = treeAreas;
     }
 
     public String getLogName() {
