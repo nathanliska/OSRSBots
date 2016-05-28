@@ -2,7 +2,6 @@ package hoWoodcutter;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
-import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
