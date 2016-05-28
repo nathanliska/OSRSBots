@@ -54,7 +54,7 @@ public class Chop extends Node {
 							|| !script.getLocalPlayer().isAnimating(),
 					// need to find a way to add on random
 					Calculations.random(100000, 150000));
-			hoWoodcutter.sleep(250, 750);
+			AbstractScript.sleep(Calculations.random(250, 750));
 		} else {
 			script.getWalking().walk(script.getSettings().getLocations().getTreeArea().getArea().getCenter());
 		}
