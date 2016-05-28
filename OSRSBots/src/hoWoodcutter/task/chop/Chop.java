@@ -12,7 +12,7 @@ public class Chop extends Node {
 	public Chop(hoWoodcutter script) {
 		super(script);
 	}
-	
+
 	@Override
 	public String status() {
 		return "Chopping down trees.";
@@ -40,16 +40,20 @@ public class Chop extends Node {
 
 		// should probably make sure you don't cut down trees that are visible
 		// but out of the bounding box, keeps happening to me
-
-		if (tree.interact("Chop down")) {
-			AbstractScript.sleepUntil(
-					() -> !tree.exists() || script.getInventory().isFull() || script.getLocalPlayer().isInCombat()
-							|| !script.getLocalPlayer().isAnimating(),
-					// need to find a way to add on random
-					Calculations.random(100000, 150000));
-			AbstractScript.sleep(Calculations.random(250, 750));
-		} else {
-			script.getWalking().walk(script.getSettings().getLocations().getTreeArea().getArea().getCenter());
+		try {
+			if (tree.interact("Chop down")) {
+				AbstractScript.sleep(Calculations.random(1750, 2000));
+				AbstractScript.sleepUntil(
+						() -> !tree.exists() || script.getInventory().isFull() || script.getLocalPlayer().isInCombat()
+								|| !script.getLocalPlayer().isAnimating(),
+						// need to find a way to add on random
+						Calculations.random(100000, 150000));
+				AbstractScript.sleep(Calculations.random(250, 750));
+			} else {
+				script.getWalking().walk(script.getSettings().getLocations().getTreeArea().getArea().getCenter());
+			}
+		} catch (NullPointerException e) {
+			// tree disappeared before I got there!
 		}
 	}
 
