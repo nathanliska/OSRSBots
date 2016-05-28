@@ -23,8 +23,6 @@ import org.dreambot.api.script.ScriptManifest;
 import org.dreambot.api.utilities.Timer;
 import org.dreambot.api.wrappers.widgets.message.Message;
 
-import com.sun.jndi.toolkit.url.UrlUtil;
-
 import hoWoodcutter.core.Locations;
 import hoWoodcutter.core.Settings;
 import hoWoodcutter.task.Node;

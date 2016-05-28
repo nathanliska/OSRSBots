@@ -3,7 +3,6 @@ package hoWoodcutter;
 import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -12,21 +11,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.sun.prism.paint.Paint;
-
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.imageio.ImageIO;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 
-import hoWoodcutter.util.Trees;
-import hoWoodcutter.util.TreeAreas;
 import hoWoodcutter.util.BankAreas;
+import hoWoodcutter.util.TreeAreas;
+import hoWoodcutter.util.Trees;
 
 @SuppressWarnings("serial")
 public class hoWoodcutterGUI extends JFrame {
