@@ -2,7 +2,6 @@ package hoWoodcutter.task.chop;
 
 import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.script.AbstractScript;
-import org.dreambot.api.utilities.impl.Condition;
 
 import hoWoodcutter.hoWoodcutter;
 import hoWoodcutter.task.Node;
@@ -28,15 +27,9 @@ public class ChopWalk extends Node {
 	@Override
 	public void execute() {
 		if (script.getWalking()	.walk(script.getSettings().getLocations().getTreeArea().getArea().getRandomTile())) {
-			AbstractScript.sleep(Calculations.random(450, 550));
+			AbstractScript.sleep(Calculations.random(650, 850));
 			// buffer so it doesn't double click before movement starts
-			AbstractScript.sleepWhile(new Condition() {
-
-				@Override
-				public boolean verify() {
-					return script.getClient().getLocalPlayer().isMoving();
-				}
-			}, Calculations.random(3000, 5000));
+			AbstractScript.sleepUntil(() -> !script.getLocalPlayer().isMoving(), Calculations.random(3000, 5000));
 		}
 
 	}
