@@ -2,10 +2,13 @@ package hoWoodcutter;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -37,6 +40,7 @@ public class hoWoodcutterGUI extends JFrame {
 	@SuppressWarnings("rawtypes")
 	private JComboBox bankArea;
 	private JCheckBox worldHop;
+	private ArrayList<String> displayAreas = new ArrayList<>(); 
 
 	/**
 	 * Launch the application.
@@ -98,13 +102,15 @@ public class hoWoodcutterGUI extends JFrame {
 		treeType.addActionListener(e -> treeTypeActionPerformed(e));
 		
 		treeArea = new JComboBox();
-		if(Trees.values()[treeType.getSelectedIndex()].getTreeAreasStrings() != null) {
+		updateDisplayAreas();
+		treeArea.setModel(new DefaultComboBoxModel(displayAreas.toArray()));
+		/*if(Trees.values()[treeArea.getSelectedIndex()].getTreeAreasStrings() != null) {
 		treeArea.setModel(
 				new DefaultComboBoxModel(Trees.values()[treeType.getSelectedIndex()].getTreeAreasStrings()));
 		} else {
 			treeArea.setModel(
 				new DefaultComboBoxModel(new String[] {""}));
-		}
+		}*/
 
 		bankArea = new JComboBox();
 		bankArea.setModel(new DefaultComboBoxModel(getAllBankAreaNames()));
@@ -209,7 +215,18 @@ public class hoWoodcutterGUI extends JFrame {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void treeTypeActionPerformed(ActionEvent e) {
+		updateDisplayAreas();
 		treeArea.setModel(
-				new DefaultComboBoxModel(Trees.values()[treeType.getSelectedIndex()].getTreeAreasStrings()));
+				new DefaultComboBoxModel(displayAreas.toArray()));
+	}
+	
+	private void updateDisplayAreas() {
+		ArrayList<String> temp = new ArrayList<>();
+		for(int i = 0; i < TreeAreas.values().length; i++) {
+			if(TreeAreas.values()[i].getAreaContains(getTreeType())) {
+				temp.add(TreeAreas.values()[i].getAreaName());
+			}
+		}
+		displayAreas = temp;
 	}
 }
