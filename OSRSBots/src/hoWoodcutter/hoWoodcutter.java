@@ -29,7 +29,7 @@ import hoWoodcutter.task.chop.Chop;
 import hoWoodcutter.task.chop.ChopWalk;
 import hoWoodcutter.task.flee.Flee;
 
-@ScriptManifest(category = Category.WOODCUTTING, name = "hoWoodcutter", description = "Gets the wood, ya dummy.", author = "HeatSlinger & Opoz", version = 0.1)
+@ScriptManifest(category = Category.WOODCUTTING, name = "hoWoodcutter", description = "Gets the wood, ya dummy.", author = "HeatSlinger & Opoz", version = 0.2)
 public class hoWoodcutter extends AbstractScript {
 	
 	private boolean shouldStart;
