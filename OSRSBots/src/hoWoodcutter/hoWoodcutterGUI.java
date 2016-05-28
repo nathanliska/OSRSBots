@@ -2,6 +2,7 @@ package hoWoodcutter;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -48,6 +49,12 @@ public class hoWoodcutterGUI extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				File test = new File("/hoWoodcutter/resources/words.txt");
+				if(test.exists()) {
+					System.out.println("woo");
+				} else {
+					System.out.println("no");
+				}
 				try {
 					hoWoodcutterGUI frame = new hoWoodcutterGUI(context);
 					frame.setVisible(true);

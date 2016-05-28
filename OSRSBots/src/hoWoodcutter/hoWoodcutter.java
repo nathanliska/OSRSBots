@@ -3,9 +3,15 @@ package hoWoodcutter;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -30,21 +36,21 @@ import hoWoodcutter.task.chop.ChopWalk;
 import hoWoodcutter.task.flee.Flee;
 import hoWoodcutter.task.powerChop.DropAll;
 
-@ScriptManifest(category = Category.WOODCUTTING, name = "hoWoodcutter", description = "Gets the wood, ya dummy.", author = "HeatSlinger & Opoz", version = 0.2)
+@ScriptManifest(category = Category.WOODCUTTING, name = "hoWoodcutter", description = "Gets the wood, ya dummy.", author = "HeatSlinger & Opoz", version = 0.26)
 public class hoWoodcutter extends AbstractScript {
-	
+
 	private boolean shouldStart;
 	private boolean levelUp;
 	private int logsCut;
 	private int logsHr;
-	
+
 	private String status;
-	
+
 	private hoWoodcutterGUI gui;
 	private Node[] nodeArray;
 	private Settings settings;
 
-	private BufferedImage mainPaint = getImage("http://i.imgur.com/TUk704K.jpg");
+	private Image mainPaint;//getImage("http://i.imgur.com/TUk704K.jpg");
 	private Timer timeRan;
 	private SkillTracker tracker;
 	private Tile deathSpot;
@@ -54,7 +60,10 @@ public class hoWoodcutter extends AbstractScript {
 		gui = new hoWoodcutterGUI(this);
 		timeRan = new Timer();
 		tracker = new SkillTracker(getClient());
-		nodeArray = new Node[] { new Flee(this), new DropAll(this), new Bank(this), new BankWalk(this), new Chop(this), new ChopWalk(this) };
+		nodeArray = new Node[] { new Flee(this), new DropAll(this), new Bank(this), new BankWalk(this), new Chop(this),
+				new ChopWalk(this) };
+		
+		mainPaint = getImage("/hoWoodcutter/resources/WoodGrainOverlay3.jpg");
 		
 		gui.setVisible(true);
 		tracker.start(Skill.WOODCUTTING);
@@ -78,7 +87,7 @@ public class hoWoodcutter extends AbstractScript {
 
 	@Override
 	public int onLoop() {
-		
+
 		try {
 			if (shouldStart) {
 				if (settings == null) {
@@ -88,7 +97,7 @@ public class hoWoodcutter extends AbstractScript {
 					settings.setLocations(new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea()));
 					settings.setWorldHop(gui.getWorldHop());
 					settings.setPowerChop(gui.getPowerChop());
-				} else {
+				} else if (getClient().isLoggedIn()) {
 					for (final Node node : nodeArray) {
 						if (node.validate()) {
 							status = node.status();
@@ -98,11 +107,11 @@ public class hoWoodcutter extends AbstractScript {
 					}
 				}
 			}
-		} catch (Exception e){
+		} catch (Exception e) {
 			log("Error at :" + status);
 			return 0;
 		}
-		
+
 		return Calculations.random(300, 500);
 	}
 
@@ -114,8 +123,8 @@ public class hoWoodcutter extends AbstractScript {
 	@Override
 	public void onPaint(Graphics2D g) {
 		g.drawImage(mainPaint, 316, 3, null);
-		
-		logsHr =  (int) (logsCut * 3600000D / timeRan.elapsed());
+
+		logsHr = (int) (logsCut * 3600000D / timeRan.elapsed());
 
 		Font font = new Font("Arial", Font.BOLD, 13);
 		g.setFont(font);
@@ -134,7 +143,6 @@ public class hoWoodcutter extends AbstractScript {
 		g.drawString("" + settings.getLocations().getTree().getLogPrice() * logsHr, 435, 98);
 		// Current Status
 		g.drawString("Status: " + status, 185, 333);
-		
 
 	}
 
@@ -157,15 +165,35 @@ public class hoWoodcutter extends AbstractScript {
 	public Tile getDeathSpot() {
 		return deathSpot;
 	}
-	
+
 	public boolean getLevelUp() {
 		return levelUp;
 	}
-	
-	private BufferedImage getImage(String url) {
+
+	private Image getImage(String url) {
+		/*int counter = 0;
+		while (counter < 20) {
+			try {
+				log("ran this");
+				return ImageIO.read(new URL(url));
+			} catch (IOException e) {
+				log("Issue loading paint");
+			}
+			sleep(200);
+			counter++;
+		}
+		return null;*/
+		InputStream temp;
 		try {
-			return ImageIO.read(new URL(url));
-		} catch (IOException e) {
+			temp = new BufferedInputStream(new FileInputStream(url));
+		} catch (FileNotFoundException e) {
+			log("File not found");
+			return null;
+		}
+		try {
+			return ImageIO.read(temp);
+		} catch (IOException e1) {
+			log("error reading");
 			return null;
 		}
 	}
