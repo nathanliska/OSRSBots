@@ -29,5 +29,4 @@ public enum Trees {
     public int getLogPrice() {
     	return price;
     }
-    
 }
