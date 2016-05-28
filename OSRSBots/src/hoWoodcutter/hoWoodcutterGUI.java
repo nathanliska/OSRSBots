@@ -1,12 +1,18 @@
 package hoWoodcutter;
 
 import java.awt.EventQueue;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.sun.prism.paint.Paint;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -14,6 +20,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 
@@ -48,6 +55,26 @@ public class hoWoodcutterGUI extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				URL image = getClass().getResource("paint.png");
+				System.out.println(image.toString());
+				while (image == null) {
+					System.out.println("Searching for paint...");
+					image = getClass().getResource("paint.png");
+				}
+				Image temp = null;
+				//while (temp == null) {
+					try {
+						temp = ImageIO.read(image);
+					} catch (IOException e1) {
+						System.out.println("error converting url to image");
+						for(int i = 0; i < e1.getStackTrace().length; i++) {
+							System.out.println(e1.getStackTrace()[i].toString());
+						}
+					}
+				//}
+					if(temp == null) {
+						System.out.println("Image is null");
+					}
 				try {
 					hoWoodcutterGUI frame = new hoWoodcutterGUI(context);
 					frame.setVisible(true);

@@ -5,7 +5,11 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 
@@ -19,6 +23,8 @@ import org.dreambot.api.script.ScriptManifest;
 import org.dreambot.api.utilities.Timer;
 import org.dreambot.api.wrappers.widgets.message.Message;
 
+import com.sun.jndi.toolkit.url.UrlUtil;
+
 import hoWoodcutter.core.Locations;
 import hoWoodcutter.core.Settings;
 import hoWoodcutter.task.Node;
@@ -29,7 +35,7 @@ import hoWoodcutter.task.chop.ChopWalk;
 import hoWoodcutter.task.flee.Flee;
 import hoWoodcutter.task.powerChop.DropAll;
 
-@ScriptManifest(category = Category.WOODCUTTING, name = "hoWoodcutter", description = "Gets the wood, ya dummy.", author = "HeatSlinger & Opoz", version = 0.26)
+@ScriptManifest(category = Category.WOODCUTTING, name = "hoWoodcutter", description = "Gets the wood, ya dummy.", author = "HeatSlinger & Opoz", version = 0.285)
 public class hoWoodcutter extends AbstractScript {
 
 	private boolean shouldStart;
@@ -43,7 +49,7 @@ public class hoWoodcutter extends AbstractScript {
 	private Node[] nodeArray;
 	private Settings settings;
 
-	private Image mainPaint;//getImage("http://i.imgur.com/TUk704K.jpg");
+	private Image mainPaint;// getImage("http://i.imgur.com/TUk704K.jpg");
 	private Timer timeRan;
 	private SkillTracker tracker;
 	private Tile deathSpot;
@@ -55,9 +61,9 @@ public class hoWoodcutter extends AbstractScript {
 		tracker = new SkillTracker(getClient());
 		nodeArray = new Node[] { new Flee(this), new DropAll(this), new Bank(this), new BankWalk(this), new Chop(this),
 				new ChopWalk(this) };
-		
-		mainPaint = getImage("/hoWoodcutter/resources/WoodGrainOverlay3.jpg");
-		
+
+		mainPaint = getImage("paint.png");
+
 		gui.setVisible(true);
 		tracker.start(Skill.WOODCUTTING);
 		log("Hello, you have started hoWoodcutter version " + getVersion() + " by HeatSlinger & Opoz, enjoy!");
@@ -118,7 +124,7 @@ public class hoWoodcutter extends AbstractScript {
 		if (mainPaint != null) {
 			g.drawImage(mainPaint, 316, 3, null);
 		}
-		
+
 		logsHr = (int) (logsCut * 3600000D / timeRan.elapsed());
 
 		Font font = new Font("Arial", Font.BOLD, 13);
@@ -167,28 +173,38 @@ public class hoWoodcutter extends AbstractScript {
 	}
 
 	private Image getImage(String url) {
-		/*int counter = 0;
-		while (counter < 20) {
+		/*
+		 * int counter = 0; while (counter < 20) { try { log("ran this"); return
+		 * ImageIO.read(new URL(url)); } catch (IOException e) { log(
+		 * "Issue loading paint"); } sleep(200); counter++; } return null;
+		 */
+		/*
+		 * try { PrintWriter writer = new PrintWriter("the-file-name.txt",
+		 * "UTF-8"); } catch (FileNotFoundException e1) { // TODO Auto-generated
+		 * catch block e1.printStackTrace(); } catch
+		 * (UnsupportedEncodingException e1) { // TODO Auto-generated catch
+		 * block e1.printStackTrace(); }
+		 */
+		URL image = getClass().getResource(url);
+		log(image.toString());
+		while (image == null) {
+			log("Searching for paint...");
+			image = getClass().getResource(url);
+		}
+		Image temp = null;
+		//while (temp == null) {
 			try {
-				log("ran this");
-				return ImageIO.read(new URL(url));
-			} catch (IOException e) {
-				log("Issue loading paint");
+				temp = ImageIO.read(image);
+			} catch (IOException e1) {
+				log("error converting url to image");
+				for(int i = 0; i < e1.getStackTrace().length; i++) {
+					log(e1.getStackTrace()[i].toString());
+				}
 			}
-			sleep(200);
-			counter++;
-		}
-		return null;*/
-		if(hoWoodcutter.class
-					.getResourceAsStream(url) == null) {
-			log("Couldn't get the paint");
-		}
-		try {
-			return ImageIO.read(hoWoodcutter.class
-					.getResourceAsStream(url));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
+		//}
+			if(temp == null) {
+				log("Image is null");
+			}
+		return temp;
 	}
 }
