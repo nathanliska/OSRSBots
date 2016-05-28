@@ -37,6 +37,15 @@ public enum TreeAreas {
 		return areaTrees;
 	}
 	
+	public boolean getAreaContains(Trees tree) {
+		for (int i = 0; i < areaTrees.length; i++) {
+			if (tree.equals(areaTrees[i])) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public String[] getAreaTreesStrings() {
 		String[] temp = new String[getAreaTrees().length];
 		for(int i = 0; i < temp.length; i++) {
