@@ -6,7 +6,7 @@ public enum TreeAreas {
 
 	TREE_DRAYNOR_NORTH("North Draynor", new Area(3092, 3288, 3105, 3283, 0), new Trees[]{Trees.NORMAL, Trees.OAK}, new BankAreas[]{BankAreas.BANK_DRAYNOR}),
 	TREE_DRAYNOR_SE("South-East Draynor", new Area(3118, 3233, 3096, 3215, 0), new Trees[]{Trees.NORMAL, Trees.OAK}, new BankAreas[]{BankAreas.BANK_DRAYNOR}),
-	TREE_EDGEVILLE("Edgeville", new Area(3086, 3469, 3088, 3481, 0), new Trees[]{Trees.YEW}, new BankAreas[]{BankAreas.BANK_EDGEVILLE});
+	TREE_EDGEVILLE("Edgeville", new Area(3085, 3469, 3088, 3481, 0), new Trees[]{Trees.YEW}, new BankAreas[]{BankAreas.BANK_EDGEVILLE});
 
 	private final String areaString;
 	private final Area area;
