@@ -1,5 +1,7 @@
 package hoWoodcutter.task.hop;
 
+import org.dreambot.api.script.AbstractScript;
+
 import hoWoodcutter.hoWoodcutter;
 import hoWoodcutter.task.Node;
 
@@ -21,14 +23,18 @@ public class WorldHop extends Node {
 
 	@Override
 	public void execute() {
-		script.setWorldHop(false);
+		AbstractScript.sleep(1000, 2000);
 		if (script.getClient().getMembershipLeft() < 0) {
 			// hop to f2p
-			script.getWorldHopper().hopWorld(script.getWorlds().getRandomWorld(World -> World.isF2P() == true).getID());
+			if (script.getWorldHopper().hopWorld(script.getWorlds().getRandomWorld(World -> World.isF2P() == true).getID())) {
+				script.setWorldHop(false);
+			}
 		} else {
 			// hop to members
-			script.getWorldHopper()
-					.hopWorld(script.getWorlds().getRandomWorld(World -> World.isMembers() == true).getID());
+			if (script.getWorldHopper()
+					.hopWorld(script.getWorlds().getRandomWorld(World -> World.isMembers() == true).getID())) {
+				script.setWorldHop(false);
+			}
 		}
 	}
 }

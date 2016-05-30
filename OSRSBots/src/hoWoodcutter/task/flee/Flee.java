@@ -47,7 +47,7 @@ public class Flee extends Node {
 					// temp world hop until we make a node for it
 				}
 			}
-			AbstractScript.sleep(Calculations.random(6000, 7000));
+			AbstractScript.sleep(Calculations.random(1000, 2000));
 		}
 		if (script.getSettings().getWorldHopIfAttacked()) {
 			script.setWorldHop(true);
