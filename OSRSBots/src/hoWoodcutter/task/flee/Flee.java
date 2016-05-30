@@ -30,22 +30,11 @@ public class Flee extends Node {
 						.walk(script.getSettings().getLocations().getBankArea().getArea().getRandomTile())) {
 					AbstractScript.sleep(Calculations.random(650, 850));
 					// buffer so it doesn't double click before movement starts
-					AbstractScript.sleepUntil(() -> !script.getLocalPlayer().isMoving(), Calculations.random(3000, 5000));
-					// temp world hop until we make a node for it
-					if (!script.getLocalPlayer().isInCombat() && script.getSettings().getWorldHop()) {
-						hoWoodcutter.sleep(5000);
-						if (script.getClient().getMembershipLeft() < 0) {
-							// hop to f2p
-							script.getWorldHopper().hopWorld(
-									script.getWorlds().getRandomWorld(World -> World.isF2P() == true).getID());
-						} else {
-							// hop to members
-							script.getWorldHopper().hopWorld(
-									script.getWorlds().getRandomWorld(World -> World.isMembers() == true).getID());
-						}
-					}
+					AbstractScript.sleepUntil(() -> !script.getLocalPlayer().isMoving(),
+							Calculations.random(3000, 5000));
 				}
 			}
+			AbstractScript.sleep(Calculations.random(6000, 7000));
 		} else if (!script.getSettings().getLocations().getTreeArea().getArea().contains(script.getLocalPlayer())) {
 			// runs away if in tree area
 			while (script.getLocalPlayer().isInCombat()) {
@@ -53,23 +42,15 @@ public class Flee extends Node {
 						.walk(script.getSettings().getLocations().getTreeArea().getArea().getRandomTile())) {
 					AbstractScript.sleep(Calculations.random(650, 850));
 					// buffer so it doesn't double click before movement starts
-					AbstractScript.sleepUntil(() -> !script.getLocalPlayer().isMoving(), Calculations.random(3000, 5000));
+					AbstractScript.sleepUntil(() -> !script.getLocalPlayer().isMoving(),
+							Calculations.random(3000, 5000));
 					// temp world hop until we make a node for it
-					if (!script.getLocalPlayer().isInCombat() && script.getSettings().getWorldHop()) {
-						hoWoodcutter.sleep(Calculations.random(5000, 6000));
-						if (script.getClient().getMembershipLeft() < 0) {
-							// hop to f2p
-							script.getWorldHopper().hopWorld(
-									script.getWorlds().getRandomWorld(World -> World.isF2P() == true).getID());
-							hoWoodcutter.sleep(Calculations.random(3000, 4000));
-						} else {
-							// hop to members
-							script.getWorldHopper().hopWorld(
-									script.getWorlds().getRandomWorld(World -> World.isMembers() == true).getID());
-						}
-					}
 				}
 			}
+			AbstractScript.sleep(Calculations.random(6000, 7000));
+		}
+		if (script.getSettings().getWorldHopIfAttacked()) {
+			script.setWorldHop(true);
 		}
 	}
 }

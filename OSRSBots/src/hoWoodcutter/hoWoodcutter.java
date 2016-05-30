@@ -1,16 +1,19 @@
 package hoWoodcutter;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Font;
-import java.awt.Graphics2D;
+import java.awt.Frame;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.io.FileNotFoundException;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import java.io.OutputStream;
 import java.net.URL;
+import java.io.File;
+import java.io.FileOutputStream;
 
 import javax.imageio.ImageIO;
 
@@ -32,13 +35,16 @@ import hoWoodcutter.task.bank.BankWalk;
 import hoWoodcutter.task.chop.Chop;
 import hoWoodcutter.task.chop.ChopWalk;
 import hoWoodcutter.task.flee.Flee;
+import hoWoodcutter.task.hop.WorldHop;
 import hoWoodcutter.task.powerChop.DropAll;
 
-@ScriptManifest(category = Category.WOODCUTTING, name = "hoWoodcutter", description = "Gets the wood, ya dummy.", author = "HeatSlinger & Opoz", version = 0.285)
+@ScriptManifest(category = Category.WOODCUTTING, name = "hoWoodcutter", description = "Gets the wood, ya dummy.", author = "HeatSlinger & Opoz", version = 0.290)
 public class hoWoodcutter extends AbstractScript {
 
 	private boolean shouldStart;
 	private boolean levelUp;
+	private boolean worldHop;
+	
 	private int logsCut;
 	private int logsHr;
 
@@ -48,26 +54,34 @@ public class hoWoodcutter extends AbstractScript {
 	private Node[] nodeArray;
 	private Settings settings;
 
-	private Image mainPaint;// getImage("http://i.imgur.com/TUk704K.jpg");
+	private BufferedImage mainPaint;
 	private Timer timeRan;
 	private SkillTracker tracker;
 	private Tile deathSpot;
+	
+	private Frame dreambotFrame = findDreambotFrame();
 
 	@Override
 	public void onStart() {
 		gui = new hoWoodcutterGUI(this);
 		timeRan = new Timer();
 		tracker = new SkillTracker(getClient());
-		nodeArray = new Node[] { new Flee(this), new DropAll(this), new Bank(this), new BankWalk(this), new Chop(this),
+		nodeArray = new Node[] {new WorldHop(this), new Flee(this), new DropAll(this), new Bank(this), new BankWalk(this), new Chop(this),
 				new ChopWalk(this) };
 
-		mainPaint = getImage("paint.png");
-
+		mainPaint = getImageFromURL("http://i.imgur.com/TUk704K.jpg");
+		
+		if(mainPaint == null) {
+			log("Error loading paint, will retry shortly.");
+		}
+	
 		gui.setVisible(true);
 		tracker.start(Skill.WOODCUTTING);
 		log("Hello, you have started hoWoodcutter version " + getVersion() + " by HeatSlinger & Opoz, enjoy!");
 	}
 
+	
+	
 	@Override
 	public void onMessage(Message message) {
 		if (message.getMessage().contains("You get some")) { // ayyy ;)
@@ -85,7 +99,10 @@ public class hoWoodcutter extends AbstractScript {
 
 	@Override
 	public int onLoop() {
-
+		if(mainPaint == null) {
+			mainPaint = getImageFromURL("http://i.imgur.com/TUk704K.jpg");
+		}
+		
 		try {
 			if (shouldStart) {
 				if (settings == null) {
@@ -93,7 +110,8 @@ public class hoWoodcutter extends AbstractScript {
 				}
 				if (settings.getLocations() == null) {
 					settings.setLocations(new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea()));
-					settings.setWorldHop(gui.getWorldHop());
+					settings.setWorldHopIfAttacked(gui.getWorldHopIfAttacked());
+					settings.setWorldHopIfNoTrees(gui.getWorldHopIfNoTrees());
 					settings.setPowerChop(gui.getPowerChop());
 				} else if (getClient().isLoggedIn()) {
 					for (final Node node : nodeArray) {
@@ -106,7 +124,7 @@ public class hoWoodcutter extends AbstractScript {
 				}
 			}
 		} catch (Exception e) {
-			log("Error at :" + status);
+			log("Error at: " + status);
 			return 0;
 		}
 
@@ -119,7 +137,7 @@ public class hoWoodcutter extends AbstractScript {
 	}
 
 	@Override
-	public void onPaint(Graphics2D g) {
+	public void onPaint(Graphics g) {
 		if (mainPaint != null) {
 			g.drawImage(mainPaint, 316, 3, null);
 		}
@@ -154,6 +172,10 @@ public class hoWoodcutter extends AbstractScript {
 	public void setDeathSpot(Tile spot) {
 		deathSpot = spot;
 	}
+	
+	public void setWorldHop(boolean hop) {
+		worldHop = hop;
+	}
 
 	public hoWoodcutterGUI getGUI() {
 		return gui;
@@ -170,40 +192,105 @@ public class hoWoodcutter extends AbstractScript {
 	public boolean getLevelUp() {
 		return levelUp;
 	}
+	
+	public boolean getWorldHop() {
+		return worldHop;
+	}
 
-	private Image getImage(String url) {
-		/*
-		 * int counter = 0; while (counter < 20) { try { log("ran this"); return
-		 * ImageIO.read(new URL(url)); } catch (IOException e) { log(
-		 * "Issue loading paint"); } sleep(200); counter++; } return null;
-		 */
-		/*
-		 * try { PrintWriter writer = new PrintWriter("the-file-name.txt",
-		 * "UTF-8"); } catch (FileNotFoundException e1) { // TODO Auto-generated
-		 * catch block e1.printStackTrace(); } catch
-		 * (UnsupportedEncodingException e1) { // TODO Auto-generated catch
-		 * block e1.printStackTrace(); }
-		 */
-		URL image = getClass().getResource(url);
-		log(image.toString());
-		while (image == null) {
-			log("Searching for paint...");
-			image = getClass().getResource(url);
+	@SuppressWarnings("unused")
+	private Image getImage(String fileName) {
+		
+		if (Desktop.isDesktopSupported()) {
+            try {
+                File myFile = new File(("temp2.png"));
+                log("outside if");
+                if (!myFile.exists()) {
+                	log("inside if");
+                    // In JAR
+                	URL url = getClass().getResource(fileName);
+                	
+                	log(url.getPath());
+                	
+                	url.openConnection().getInputStream();
+                	
+                    InputStream inputStream = getClass()
+                                        .getResourceAsStream(fileName);
+                    
+                    // Copy file
+                    OutputStream outputStream = new FileOutputStream(myFile);
+                    byte[] buffer = new byte[1024];
+                    int length;
+                    if(inputStream == null) {
+                    	log("input stream null");
+                    }
+                    while((length = inputStream.read()) > 0){
+                        outputStream.write(length);
+                        log("Ran this");
+                    }
+                    //while ((length = inputStream.read(buffer)) > 0) {
+                    //    outputStream.write(buffer, 0, length);
+                    //    log("ran this");
+                    //}
+                    outputStream.close();
+                    inputStream.close();
+                }
+                //Desktop.getDesktop().open(myFile);
+                log("" + (ImageIO.read(myFile) == null));
+                return ImageIO.read(myFile);
+            } catch (IOException ex) {
+                log(ex.getMessage());
+            	log("IOException");
+            	
+            }
+        }
+		return null;
+		/*URL url = hoWoodcutter.class.getResource(fileName);
+		
+		BufferedImage image = null;
+		
+		if(url == null) {
+			log("url is null");
 		}
-		Image temp = null;
-		//while (temp == null) {
-			try {
-				temp = ImageIO.read(image);
-			} catch (IOException e1) {
-				log("error converting url to image");
-				for(int i = 0; i < e1.getStackTrace().length; i++) {
-					log(e1.getStackTrace()[i].toString());
-				}
+		
+		log(url.getPath());
+		// returning file:/C:/Users/Me/DreamBot/Scripts/MyJar.jar!/package/paint.png
+		log(url.toString()); // To make sure I have the correct file
+		// returning jar:file:/C:/Users/Me/DreamBot/Scripts/MyJar.jar!/package/paint.png
+		
+		try {
+			image = ImageIO.read(url);
+		} catch (IOException e1) {
+			log("Error converting url to image.");
+		}
+		
+		if (image == null) {
+			log("Image is null.");
+		} else {
+			
+		}*/
+		
+		//return image;
+	}
+	
+	private BufferedImage getImageFromURL(String url) {
+		try {
+			return ImageIO.read(new URL(url));
+		} catch (IOException e) {
+			return null;
+		}
+	}
+	
+
+	public static Frame findDreambotFrame() {
+		for (Frame frame : Frame.getFrames()) {
+			if (frame.getTitle().toLowerCase().contains("dreambot")) {
+				return frame;
 			}
-		//}
-			if(temp == null) {
-				log("Image is null");
-			}
-		return temp;
+		}
+		return null;
+	}
+	
+	public Frame getDreambotFrame() {
+		return dreambotFrame;
 	}
 }

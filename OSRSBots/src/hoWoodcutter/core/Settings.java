@@ -4,12 +4,14 @@ public class Settings {
 
 	//Creates instantiation of Locations
 	private Locations location;
-	private boolean worldHop;
+	private boolean worldHopIfAttacked;
+	private boolean worldHopIfNoTrees;
 	private boolean powerChop;
 	
 	public Settings() {
 		location = null;
-		worldHop = false;
+		worldHopIfAttacked = false;
+		worldHopIfNoTrees = false;
 		powerChop = false;
 	}
 	
@@ -17,8 +19,12 @@ public class Settings {
 		this.location = location;
 	}
 	
-	public void setWorldHop(boolean hop) {
-		this.worldHop = hop;
+	public void setWorldHopIfAttacked(boolean hop) {
+		this.worldHopIfAttacked = hop;
+	}
+	
+	public void setWorldHopIfNoTrees(boolean hop) {
+		this.worldHopIfNoTrees = hop;
 	}
 	
 	public void setPowerChop(boolean chop) {
@@ -29,8 +35,12 @@ public class Settings {
 		return location;
 	}
 	
-	public boolean getWorldHop() {
-		return worldHop;
+	public boolean getWorldHopIfAttacked() {
+		return worldHopIfAttacked;
+	}
+	
+	public boolean getWorldHopIfNoTrees() {
+		return worldHopIfNoTrees;
 	}
 	
 	public boolean getPowerChop() {

@@ -6,7 +6,8 @@ public enum BankAreas {
 	
 	BANK_VARROCK_EAST("Varrock East", new Area()),
 	BANK_VARROCK_WEST("Varrock West", new Area()),
-	BANK_DRAYNOR("Draynor", new Area(3092, 3240, 3097, 3246, 0));
+	BANK_DRAYNOR("Draynor", new Area(3092, 3240, 3097, 3246, 0)),
+	BANK_EDGEVILLE("Edgeville", new Area(3092, 3489, 3097, 3495, 0));
 	
 	//COMMENTED FOR TESTING.
 	
