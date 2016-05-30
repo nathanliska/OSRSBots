@@ -125,6 +125,7 @@ public class hoWoodcutter extends AbstractScript {
 			}
 		} catch (Exception e) {
 			log("Error at: " + status);
+			log(e.getMessage());
 			return 0;
 		}
 

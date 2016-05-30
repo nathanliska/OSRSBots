@@ -1,5 +1,6 @@
 package hoWoodcutter.task.hop;
 
+import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.script.AbstractScript;
 
 import hoWoodcutter.hoWoodcutter;
@@ -36,5 +37,6 @@ public class WorldHop extends Node {
 				script.setWorldHop(false);
 			}
 		}
+		AbstractScript.sleep(Calculations.random(3000, 4000));
 	}
 }
