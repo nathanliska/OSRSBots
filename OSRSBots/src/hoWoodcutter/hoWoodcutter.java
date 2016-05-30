@@ -38,7 +38,7 @@ import hoWoodcutter.task.flee.Flee;
 import hoWoodcutter.task.hop.WorldHop;
 import hoWoodcutter.task.powerChop.DropAll;
 
-@ScriptManifest(category = Category.WOODCUTTING, name = "hoWoodcutter", description = "Gets the wood, ya dummy.", author = "HeatSlinger & Opoz", version = 0.290)
+@ScriptManifest(category = Category.WOODCUTTING, name = "hoWoodcutter", description = "Gets the wood, ya dummy.", author = "HeatSlinger & Opoz", version = 0.3)
 public class hoWoodcutter extends AbstractScript {
 
 	private boolean shouldStart;
