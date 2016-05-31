@@ -11,8 +11,6 @@ import hoWoodcutter.hoWoodcutter;
 import hoWoodcutter.task.Node;
 
 public class Chop extends Node {
-	
-	private List<GameObject> otherTree = new ArrayList<GameObject>();
 
 	public Chop(hoWoodcutter script) {
 		super(script);
@@ -33,20 +31,13 @@ public class Chop extends Node {
 	@Override
 	public void execute() {
 		GameObject tree = script.getGameObjects()
-				.closest(gameObject -> 
-					gameObject != null
-					&& gameObject.getName().equals(script.getSettings().getLocations().getTree().getTreeName())
-					&& script.getSettings().getLocations().getTreeArea().getArea().contains(gameObject)
-					&& script.getMap().canReach(gameObject) && gameObject.hasAction("Chop down"));
-		
-		if (tree != null) {
-			if (tree.exists()) {
-				if (!otherTree.contains(tree)) {
-					otherTree.add(tree);	
-				}		
-			}
-		}
-		
+				.closest(
+						gameObject -> gameObject != null
+								&& gameObject.getName()
+										.equals(script.getSettings().getLocations().getTree().getTreeName())
+								&& script.getSettings().getLocations().getTreeArea().getArea().contains(gameObject)
+								&& script.getMap().canReach(gameObject) && gameObject.hasAction("Chop down"));
+
 		if (tree != null) {
 			try {
 				if (tree.interact("Chop down")) {
@@ -67,7 +58,7 @@ public class Chop extends Node {
 				// tree disappeared before I got there!
 			}
 		} else {
-			if(script.getSettings().getWorldHopIfNoTrees()) {
+			if (script.getSettings().getWorldHopIfNoTrees()) {
 				script.setWorldHop(true);
 			}
 		}
