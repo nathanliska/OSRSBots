@@ -1,5 +1,10 @@
 package hoWoodcutter.core;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
+import org.dreambot.api.wrappers.interactive.GameObject;
+
 import hoWoodcutter.util.BankAreas;
 import hoWoodcutter.util.TreeAreas;
 import hoWoodcutter.util.Trees;
