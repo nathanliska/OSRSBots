@@ -7,10 +7,7 @@ import java.util.Queue;
 import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.interactive.GameObjects;
 import org.dreambot.api.script.AbstractScript;
-import org.dreambot.api.wrappers.cache.nodes.NodeWrapper;
 import org.dreambot.api.wrappers.interactive.GameObject;
-
-import com.sun.tracing.dtrace.ProviderAttributes;
 
 import hoWoodcutter.hoWoodcutter;
 import hoWoodcutter.task.Node;
