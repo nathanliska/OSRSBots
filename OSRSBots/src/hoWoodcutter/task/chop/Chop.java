@@ -58,9 +58,9 @@ public class Chop extends Node {
 					trees.add(tree);
 				}
 			} while (tree != null);
-			AbstractScript.log(trees.size() + "");
+			//AbstractScript.log(trees.size() + "");
 			for(int i = 0; i < trees.size(); i++) {
-				AbstractScript.log("" + trees.get(i).getTile());
+				//AbstractScript.log("" + trees.get(i).getTile());
 			}
 			firstRun = false;
 		}
