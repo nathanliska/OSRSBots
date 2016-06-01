@@ -18,7 +18,6 @@ public class Chop extends Node {
 	private ArrayList<GameObject> trees = new ArrayList<GameObject>();
 	private GameObjects gos = script.getGameObjects();
 	private Queue<GameObject> treeQueue = new LinkedList<GameObject>();
-	private int treesInArea = 0;
 
 	public Chop(hoWoodcutter script) {
 		super(script);
