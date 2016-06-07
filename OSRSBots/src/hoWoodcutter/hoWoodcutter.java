@@ -48,6 +48,7 @@ public class hoWoodcutter extends AbstractScript {
 	
 	private int logsCut;
 	private int logsHr;
+	private int logPrice;
 
 	private String status;
 
@@ -114,6 +115,7 @@ public class hoWoodcutter extends AbstractScript {
 					settings.setWorldHopIfAttacked(gui.getWorldHopIfAttacked());
 					settings.setWorldHopIfNoTrees(gui.getWorldHopIfNoTrees());
 					settings.setPowerChop(gui.getPowerChop());
+					logPrice = PriceLookup.getPrice(settings.getLocations().getTree().getLogID());
 				} else if (getClient().isLoggedIn()) {
 					for (final Node node : nodeArray) {
 						if (node.validate()) {
@@ -159,7 +161,7 @@ public class hoWoodcutter extends AbstractScript {
 		// Xp Gain/hr
 		g.drawString("" + tracker.getGainedExperiencePerHour(Skill.WOODCUTTING), 435, 82);
 		// Gp/hr
-		g.drawString("" + PriceLookup.getPrice(settings.getLocations().getTree().getLogID()) * logsHr, 435, 98);
+		g.drawString("" + logPrice * logsHr, 435, 98);
 		// Current Status
 		g.setColor(Color.WHITE);
 		g.drawString("Status: " + status, 185, 333);
