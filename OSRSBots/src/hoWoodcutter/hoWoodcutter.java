@@ -109,8 +109,6 @@ public class hoWoodcutter extends AbstractScript {
 			if (shouldStart) {
 				if (settings == null) {
 					settings = new Settings();
-				}
-				if (settings.getLocations() == null) {
 					settings.setLocations(new Locations(gui.getTreeType(), gui.getTreeArea(), gui.getBankArea()));
 					settings.setWorldHopIfAttacked(gui.getWorldHopIfAttacked());
 					settings.setWorldHopIfNoTrees(gui.getWorldHopIfNoTrees());
@@ -160,7 +158,7 @@ public class hoWoodcutter extends AbstractScript {
 		// Xp Gain/hr
 		g.drawString("" + tracker.getGainedExperiencePerHour(Skill.WOODCUTTING), 435, 82);
 		// Gp/hr
-		g.drawString("" + logPrice * logsHr, 435, 98);
+		g.drawString("" + settings.getLocations().getTree().getPrice() * logsHr, 435, 98);
 		// Current Status
 		g.setColor(Color.WHITE);
 		g.drawString("Status: " + status, 185, 333);
