@@ -30,6 +30,7 @@ import org.dreambot.api.wrappers.widgets.message.Message;
 import hoWoodcutter.core.Locations;
 import hoWoodcutter.core.Settings;
 import hoWoodcutter.task.Node;
+import hoWoodcutter.task.antiban.Antiban;
 import hoWoodcutter.task.bank.Bank;
 import hoWoodcutter.task.bank.BankWalk;
 import hoWoodcutter.task.chop.Chop;
@@ -44,10 +45,10 @@ public class hoWoodcutter extends AbstractScript {
 	private boolean shouldStart;
 	private boolean levelUp;
 	private boolean worldHop;
-	
+	private boolean antiban;
+
 	private int logsCut;
 	private int logsHr;
-	private int logPrice;
 
 	private String status;
 
@@ -59,7 +60,7 @@ public class hoWoodcutter extends AbstractScript {
 	private Timer timeRan;
 	private SkillTracker tracker;
 	private Tile deathSpot;
-	
+
 	private Frame dreambotFrame = findDreambotFrame();
 
 	@Override
@@ -67,23 +68,22 @@ public class hoWoodcutter extends AbstractScript {
 		gui = new hoWoodcutterGUI(this);
 		timeRan = new Timer();
 		tracker = new SkillTracker(getClient());
-		nodeArray = new Node[] {new WorldHop(this), new Flee(this), new DropAll(this), new Bank(this), new BankWalk(this), new Chop(this),
-				new ChopWalk(this) };
+		nodeArray = new Node[] { new Antiban(this), new WorldHop(this), new Flee(this), new DropAll(this),
+				new Bank(this), new BankWalk(this), new Chop(this), new ChopWalk(this) };
 		status = "Starting script.";
+		antiban = false;
 
 		mainPaint = getImageFromURL("http://i.imgur.com/TUk704K.jpg");
-		
-		if(mainPaint == null) {
+
+		if (mainPaint == null) {
 			log("Error loading paint, will retry shortly.");
 		}
-	
+
 		gui.setVisible(true);
 		tracker.start(Skill.WOODCUTTING);
 		log("Hello, you have started hoWoodcutter version " + getVersion() + " by HeatSlinger & Opoz, enjoy!");
 	}
 
-	
-	
 	@Override
 	public void onMessage(Message message) {
 		if (message.getMessage().contains("You get some")) { // ayyy ;)
@@ -104,7 +104,7 @@ public class hoWoodcutter extends AbstractScript {
 		if (mainPaint == null) {
 			mainPaint = getImageFromURL("http://i.imgur.com/TUk704K.jpg");
 		}
-		
+
 		try {
 			if (shouldStart) {
 				if (settings == null) {
@@ -172,9 +172,13 @@ public class hoWoodcutter extends AbstractScript {
 	public void setDeathSpot(Tile spot) {
 		deathSpot = spot;
 	}
-	
+
 	public void setWorldHop(boolean hop) {
 		worldHop = hop;
+	}
+
+	public void setAntiban(int time) {
+		antiban = true;
 	}
 
 	public hoWoodcutterGUI getGUI() {
@@ -192,86 +196,85 @@ public class hoWoodcutter extends AbstractScript {
 	public boolean getLevelUp() {
 		return levelUp;
 	}
-	
+
 	public boolean getWorldHop() {
 		return worldHop;
 	}
 
+	public boolean getAntiban() {
+		return antiban;
+	}
+
 	@SuppressWarnings("unused")
 	private Image getImage(String fileName) {
-		
+
 		if (Desktop.isDesktopSupported()) {
-            try {
-                File myFile = new File(("temp2.png"));
-                log("outside if");
-                if (!myFile.exists()) {
-                	log("inside if");
-                    // In JAR
-                	URL url = getClass().getResource(fileName);
-                	
-                	log(url.getPath());
-                	
-                	url.openConnection().getInputStream();
-                	
-                    InputStream inputStream = getClass()
-                                        .getResourceAsStream(fileName);
-                    
-                    // Copy file
-                    OutputStream outputStream = new FileOutputStream(myFile);
-                    byte[] buffer = new byte[1024];
-                    int length;
-                    if(inputStream == null) {
-                    	log("input stream null");
-                    }
-                    while((length = inputStream.read()) > 0){
-                        outputStream.write(length);
-                        log("Ran this");
-                    }
-                    //while ((length = inputStream.read(buffer)) > 0) {
-                    //    outputStream.write(buffer, 0, length);
-                    //    log("ran this");
-                    //}
-                    outputStream.close();
-                    inputStream.close();
-                }
-                //Desktop.getDesktop().open(myFile);
-                log("" + (ImageIO.read(myFile) == null));
-                return ImageIO.read(myFile);
-            } catch (IOException ex) {
-                log(ex.getMessage());
-            	log("IOException");
-            	
-            }
-        }
+			try {
+				File myFile = new File(("temp2.png"));
+				log("outside if");
+				if (!myFile.exists()) {
+					log("inside if");
+					// In JAR
+					URL url = getClass().getResource(fileName);
+
+					log(url.getPath());
+
+					url.openConnection().getInputStream();
+
+					InputStream inputStream = getClass().getResourceAsStream(fileName);
+
+					// Copy file
+					OutputStream outputStream = new FileOutputStream(myFile);
+					byte[] buffer = new byte[1024];
+					int length;
+					if (inputStream == null) {
+						log("input stream null");
+					}
+					while ((length = inputStream.read()) > 0) {
+						outputStream.write(length);
+						log("Ran this");
+					}
+					// while ((length = inputStream.read(buffer)) > 0) {
+					// outputStream.write(buffer, 0, length);
+					// log("ran this");
+					// }
+					outputStream.close();
+					inputStream.close();
+				}
+				// Desktop.getDesktop().open(myFile);
+				log("" + (ImageIO.read(myFile) == null));
+				return ImageIO.read(myFile);
+			} catch (IOException ex) {
+				log(ex.getMessage());
+				log("IOException");
+
+			}
+		}
 		return null;
-		/*URL url = hoWoodcutter.class.getResource(fileName);
-		
-		BufferedImage image = null;
-		
-		if(url == null) {
-			log("url is null");
-		}
-		
-		log(url.getPath());
-		// returning file:/C:/Users/Me/DreamBot/Scripts/MyJar.jar!/package/paint.png
-		log(url.toString()); // To make sure I have the correct file
-		// returning jar:file:/C:/Users/Me/DreamBot/Scripts/MyJar.jar!/package/paint.png
-		
-		try {
-			image = ImageIO.read(url);
-		} catch (IOException e1) {
-			log("Error converting url to image.");
-		}
-		
-		if (image == null) {
-			log("Image is null.");
-		} else {
-			
-		}*/
-		
-		//return image;
+		/*
+		 * URL url = hoWoodcutter.class.getResource(fileName);
+		 * 
+		 * BufferedImage image = null;
+		 * 
+		 * if(url == null) { log("url is null"); }
+		 * 
+		 * log(url.getPath()); // returning
+		 * file:/C:/Users/Me/DreamBot/Scripts/MyJar.jar!/package/paint.png
+		 * log(url.toString()); // To make sure I have the correct file //
+		 * returning
+		 * jar:file:/C:/Users/Me/DreamBot/Scripts/MyJar.jar!/package/paint.png
+		 * 
+		 * try { image = ImageIO.read(url); } catch (IOException e1) { log(
+		 * "Error converting url to image."); }
+		 * 
+		 * if (image == null) { log("Image is null."); } else {
+		 * 
+		 * }
+		 */
+
+		// return image;
 	}
-	
+
 	private BufferedImage getImageFromURL(String url) {
 		try {
 			return ImageIO.read(new URL(url));
@@ -279,7 +282,6 @@ public class hoWoodcutter extends AbstractScript {
 			return null;
 		}
 	}
-	
 
 	public static Frame findDreambotFrame() {
 		for (Frame frame : Frame.getFrames()) {
@@ -289,7 +291,7 @@ public class hoWoodcutter extends AbstractScript {
 		}
 		return null;
 	}
-	
+
 	public Frame getDreambotFrame() {
 		return dreambotFrame;
 	}

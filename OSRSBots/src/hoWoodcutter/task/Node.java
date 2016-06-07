@@ -8,16 +8,10 @@ public abstract class Node {
 	
 	//Script instance to use inside of subclasses
 	public hoWoodcutter script;
-	public static boolean random;
 	
 	//Node constructor takes the script argument
 	public Node(hoWoodcutter script) {
 		this.script = script;
-	}
-	
-	//Sets random to true for a given time.
-	public static void setRandomTrue(int time) {
-		random = true;
 	}
 	
 	//Delays node 100-500ms

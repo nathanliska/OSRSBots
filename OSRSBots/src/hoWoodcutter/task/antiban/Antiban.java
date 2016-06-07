@@ -11,7 +11,7 @@ public class Antiban extends Node {
 
 	@Override
 	public boolean validate() {
-		return Node.random;
+		return script.getAntiban();
 	}
 
 	@Override
@@ -19,5 +19,4 @@ public class Antiban extends Node {
 		// TODO Auto-generated method stub
 		
 	}
-
 }
