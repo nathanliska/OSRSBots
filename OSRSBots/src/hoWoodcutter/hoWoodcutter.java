@@ -28,6 +28,7 @@ import org.dreambot.api.utilities.Timer;
 import org.dreambot.api.wrappers.widgets.message.Message;
 
 import hoWoodcutter.core.Locations;
+import hoWoodcutter.core.PriceLookup;
 import hoWoodcutter.core.Settings;
 import hoWoodcutter.task.Node;
 import hoWoodcutter.task.bank.Bank;
@@ -158,7 +159,7 @@ public class hoWoodcutter extends AbstractScript {
 		// Xp Gain/hr
 		g.drawString("" + tracker.getGainedExperiencePerHour(Skill.WOODCUTTING), 435, 82);
 		// Gp/hr
-		g.drawString("" + settings.getLocations().getTree().getLogPrice() * logsHr, 435, 98);
+		g.drawString("" + PriceLookup.getPrice(settings.getLocations().getTree().getLogID()) * logsHr, 435, 98);
 		// Current Status
 		g.setColor(Color.WHITE);
 		g.drawString("Status: " + status, 185, 333);
