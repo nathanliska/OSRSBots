@@ -8,12 +8,12 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
-import java.io.File;
-import java.io.FileOutputStream;
 
 import javax.imageio.ImageIO;
 
@@ -28,7 +28,6 @@ import org.dreambot.api.utilities.Timer;
 import org.dreambot.api.wrappers.widgets.message.Message;
 
 import hoWoodcutter.core.Locations;
-import hoWoodcutter.core.PriceLookup;
 import hoWoodcutter.core.Settings;
 import hoWoodcutter.task.Node;
 import hoWoodcutter.task.bank.Bank;
@@ -70,6 +69,7 @@ public class hoWoodcutter extends AbstractScript {
 		tracker = new SkillTracker(getClient());
 		nodeArray = new Node[] {new WorldHop(this), new Flee(this), new DropAll(this), new Bank(this), new BankWalk(this), new Chop(this),
 				new ChopWalk(this) };
+		status = "Starting script.";
 
 		mainPaint = getImageFromURL("http://i.imgur.com/TUk704K.jpg");
 		
@@ -101,7 +101,7 @@ public class hoWoodcutter extends AbstractScript {
 
 	@Override
 	public int onLoop() {
-		if(mainPaint == null) {
+		if (mainPaint == null) {
 			mainPaint = getImageFromURL("http://i.imgur.com/TUk704K.jpg");
 		}
 		
@@ -115,7 +115,6 @@ public class hoWoodcutter extends AbstractScript {
 					settings.setWorldHopIfAttacked(gui.getWorldHopIfAttacked());
 					settings.setWorldHopIfNoTrees(gui.getWorldHopIfNoTrees());
 					settings.setPowerChop(gui.getPowerChop());
-					logPrice = PriceLookup.getPrice(settings.getLocations().getTree().getLogID());
 				} else if (getClient().isLoggedIn()) {
 					for (final Node node : nodeArray) {
 						if (node.validate()) {
@@ -155,7 +154,7 @@ public class hoWoodcutter extends AbstractScript {
 		// Logs Cut
 		g.drawString("" + logsCut, 435, 34);
 		// Logs/hr
-		g.drawString("" + logsCut * 3600000D / timeRan.elapsed(), 435, 50);
+		g.drawString("" + logsCut * (int) 3600000D / timeRan.elapsed(), 435, 50);
 		// Xp Gained
 		g.drawString("" + tracker.getGainedExperience(Skill.WOODCUTTING), 435, 66);
 		// Xp Gain/hr
