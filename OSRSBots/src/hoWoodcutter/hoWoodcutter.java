@@ -157,7 +157,7 @@ public class hoWoodcutter extends AbstractScript {
 		// Logs Cut
 		g.drawString("" + logsCut, 435, 34);
 		// Logs/hr
-		g.drawString("" + logsCut * (int) 3600000D / timeRan.elapsed(), 435, 50);
+		g.drawString("" + logsHr , 435, 50);
 		// Xp Gained
 		g.drawString("" + tracker.getGainedExperience(Skill.WOODCUTTING), 435, 66);
 		// Xp Gain/hr
