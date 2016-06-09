@@ -29,6 +29,7 @@ import org.dreambot.api.wrappers.widgets.message.Message;
 
 import hoWoodcutter.core.Locations;
 import hoWoodcutter.core.Settings;
+import hoWoodcutter.core.Status;
 import hoWoodcutter.task.GExchange;
 import hoWoodcutter.task.Node;
 import hoWoodcutter.task.antiban.Antiban;
@@ -55,6 +56,7 @@ public class hoWoodcutter extends AbstractScript {
 	private String status;
 
 	private hoWoodcutterGUI gui;
+	private Status state;
 	private Node[] nodeArray;
 	private Settings settings;
 

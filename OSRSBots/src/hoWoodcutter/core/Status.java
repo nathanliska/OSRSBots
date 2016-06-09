@@ -15,6 +15,15 @@ public class Status {
 	}
 	
 	public static States getStatus() {
+		
+		/*
+		 * FIND ALL STATUSES HERE.
+		 * 
+		 * IN NODE VALIDATION:
+		 * -------------------
+		 * return (Status.getStatus == States.CHOP) - For chop, others will look the same.
+		 */
+		
 		return status;
 	}
 	
