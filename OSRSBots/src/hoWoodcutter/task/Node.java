@@ -19,16 +19,12 @@ public abstract class Node {
 		return (int)Calculations.random(100, 500);
 	}
 	
-	//Return a string
-	public String status() {
-		return "";
-	}
-	
 	//Return a priority integer (the higher the better)
 	public int priority() {
 		return 0;
 	}
 	
+	public abstract String status();
 	public abstract boolean validate();
 	public abstract void execute();
 }

@@ -10,6 +10,11 @@ public class Antiban extends Node {
 	}
 
 	@Override
+	public String status() {
+		return "Doing antiban stuff";
+	}
+	
+	@Override
 	public boolean validate() {
 		return script.getAntiban();
 	}
@@ -17,6 +22,6 @@ public class Antiban extends Node {
 	@Override
 	public void execute() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

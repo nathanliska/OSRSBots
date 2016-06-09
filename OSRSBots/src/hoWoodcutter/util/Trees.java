@@ -1,21 +1,21 @@
 package hoWoodcutter.util;
 
 public enum Trees {
-    NORMAL("Logs", "Tree", 34),
-    OAK("Oak logs", "Oak", 35),
-    WILLOW("Willow logs", "Willow", 9),
-    MAPLE("Maple logs", "Maple", 22),
-    YEW("Yew logs", "Yew", 391),
-    MAGIC("Magic logs", "Magic", 1175);
+    NORMAL("Logs", "Tree", 1511),
+    OAK("Oak logs", "Oak", 1521),
+    WILLOW("Willow logs", "Willow", 1519),
+    MAPLE("Maple logs", "Maple", 1517),
+    YEW("Yew logs", "Yew", 1515),
+    MAGIC("Magic logs", "Magic", 1513);
 
     private final String logName;
     private final String treeName;
-    private final int price;
+    private final int itemID;
     
-    Trees(String logName, String treeName, int price) {
+    Trees(String logName, String treeName, int itemID) {
         this.logName = logName;
       	this.treeName = treeName;
-      	this.price = price;
+      	this.itemID = itemID;
     }
 
     public String getLogName() {
@@ -26,8 +26,8 @@ public enum Trees {
         return treeName;
     }
     
-    public int getLogPrice() {
-    	return price;
+    public int getItemID() {
+    	return itemID;
     }
     
 }

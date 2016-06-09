@@ -29,6 +29,7 @@ import org.dreambot.api.wrappers.widgets.message.Message;
 
 import hoWoodcutter.core.Locations;
 import hoWoodcutter.core.Settings;
+import hoWoodcutter.task.GExchange;
 import hoWoodcutter.task.Node;
 import hoWoodcutter.task.antiban.Antiban;
 import hoWoodcutter.task.bank.Bank;
@@ -49,6 +50,7 @@ public class hoWoodcutter extends AbstractScript {
 
 	private int logsCut;
 	private int logsHr;
+	private int logsPrice;
 
 	private String status;
 
@@ -113,6 +115,8 @@ public class hoWoodcutter extends AbstractScript {
 					settings.setWorldHopIfAttacked(gui.getWorldHopIfAttacked());
 					settings.setWorldHopIfNoTrees(gui.getWorldHopIfNoTrees());
 					settings.setPowerChop(gui.getPowerChop());
+					
+					logsPrice = GExchange.getPrice(gui.getTreeType().getItemID());
 				} else if (getClient().isLoggedIn()) {
 					for (final Node node : nodeArray) {
 						if (node.validate()) {
@@ -125,6 +129,7 @@ public class hoWoodcutter extends AbstractScript {
 			}
 		} catch (Exception e) {
 			log("Error at: " + status);
+			e.printStackTrace();
 			return 0;
 		}
 
@@ -158,7 +163,7 @@ public class hoWoodcutter extends AbstractScript {
 		// Xp Gain/hr
 		g.drawString("" + tracker.getGainedExperiencePerHour(Skill.WOODCUTTING), 435, 82);
 		// Gp/hr
-		g.drawString("" + settings.getLocations().getTree().getLogPrice() * logsHr, 435, 98);
+		g.drawString("" + logsPrice * logsHr, 435, 98);
 		// Current Status
 		g.setColor(Color.WHITE);
 		g.drawString("Status: " + status, 185, 333);
