@@ -13,7 +13,7 @@ public class Antiban extends Node {
 	public String status() {
 		return "Doing antiban stuff";
 	}
-	
+
 	@Override
 	public boolean validate() {
 		return script.getAntiban();

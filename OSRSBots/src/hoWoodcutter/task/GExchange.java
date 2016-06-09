@@ -7,14 +7,15 @@ import java.net.URL;
 public class GExchange {
 
 	/*
-	 * BufferedReader for reading text from the API.
-	 * StringBuffer for appending the characters in the API into a string no longer than 1024 chars.
+	 * BufferedReader for reading text from the API. StringBuffer for appending
+	 * the characters in the API into a string no longer than 1024 chars.
 	 */
 	private static BufferedReader bReader;
 	private static StringBuffer buffer;
 
 	/*
-	 * Returns a string of JSON containing information about the item from the URL.
+	 * Returns a string of JSON containing information about the item from the
+	 * URL.
 	 * 
 	 * PARSE AT YOUR OWN WILL.
 	 */
@@ -49,14 +50,14 @@ public class GExchange {
 	public static int getPrice(int itemID) {
 		String[] priceInfo;
 		String[] itemInfo = getData(itemID).split(",");
-		
+
 		try {
 			priceInfo = itemInfo[8].replace("}", "").split(":");
 			return Integer.parseInt(priceInfo[1]);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return 0;
 	}
 }

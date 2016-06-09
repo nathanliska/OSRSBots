@@ -8,7 +8,7 @@ import hoWoodcutter.hoWoodcutter;
 import hoWoodcutter.task.Node;
 
 public class FleeHeal extends Node {
-	
+
 	public FleeHeal(hoWoodcutter script) {
 		super(script);
 	}
@@ -21,7 +21,8 @@ public class FleeHeal extends Node {
 	@Override
 	public boolean validate() {
 		return (script.getLocalPlayer().getHealthPercent() < 90
-				&& script.getSettings().getLocations().getBankArea().getArea().contains(script.getLocalPlayer()) && !script.getInventory().isFull());
+				&& script.getSettings().getLocations().getBankArea().getArea().contains(script.getLocalPlayer())
+				&& !script.getInventory().isFull());
 	}
 
 	@Override

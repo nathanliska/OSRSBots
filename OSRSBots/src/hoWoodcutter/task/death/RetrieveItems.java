@@ -6,7 +6,7 @@ import hoWoodcutter.hoWoodcutter;
 import hoWoodcutter.task.Node;
 
 public class RetrieveItems extends Node {
-	
+
 	public RetrieveItems(hoWoodcutter script) {
 		super(script);
 	}
@@ -24,10 +24,10 @@ public class RetrieveItems extends Node {
 	@Override
 	public void execute() {
 		GameObject item = script.getGameObjects().getTopObjectOnTile(script.getDeathSpot());
-		if(script.getLocalPlayer().getTile().equals(script.getDeathSpot())) {
+		if (script.getLocalPlayer().getTile().equals(script.getDeathSpot())) {
 			item.interact("Pick up");
 		}
-		if(script.getGameObjects().getObjectsOnTile(script.getDeathSpot()).length == 0) {
+		if (script.getGameObjects().getObjectsOnTile(script.getDeathSpot()).length == 0) {
 			script.setDeathSpot(null);
 		}
 	}

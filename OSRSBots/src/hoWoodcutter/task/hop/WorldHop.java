@@ -27,7 +27,8 @@ public class WorldHop extends Node {
 		AbstractScript.sleep(1000, 2000);
 		if (script.getClient().getMembershipLeft() < 0) {
 			// hop to f2p
-			if (script.getWorldHopper().hopWorld(script.getWorlds().getRandomWorld(World -> World.isF2P() == true).getID())) {
+			if (script.getWorldHopper()
+					.hopWorld(script.getWorlds().getRandomWorld(World -> World.isF2P() == true).getID())) {
 				script.setWorldHop(false);
 			}
 		} else {

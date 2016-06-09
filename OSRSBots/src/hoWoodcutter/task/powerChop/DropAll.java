@@ -25,8 +25,8 @@ public class DropAll extends Node {
 	@Override
 	public void execute() {
 		if (script.getInventory().dropAllExcept(item -> item != null && item.getName().contains("axe"))) {
-			AbstractScript.sleepUntil(() -> 
-					script.getInventory().onlyContains(item -> item != null && item.getName().contains("axe")),
+			AbstractScript.sleepUntil(
+					() -> script.getInventory().onlyContains(item -> item != null && item.getName().contains("axe")),
 					Calculations.random(20000, 30000));
 		}
 	}

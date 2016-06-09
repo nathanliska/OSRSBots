@@ -37,11 +37,13 @@ public class Chop extends Node {
 
 	@Override
 	public void execute() {
-		/* THIS GETS ALL TREES IN THE AREA but includes all stumps b/c no difference between yew stump and oak stump
+		/*
+		 * THIS GETS ALL TREES IN THE AREA but includes all stumps b/c no
+		 * difference between yew stump and oak stump
 		 * 
 		 * 
 		 * 
-		*/if (firstRun) {
+		 */if (firstRun) {
 			// need a while that loops the correct amount of times here
 			GameObject tree;
 			do {
@@ -54,9 +56,9 @@ public class Chop extends Node {
 					trees.add(tree);
 				}
 			} while (tree != null);
-			//AbstractScript.log(trees.size() + "");
-			for(int i = 0; i < trees.size(); i++) {
-				//AbstractScript.log("" + trees.get(i).getTile());
+			// AbstractScript.log(trees.size() + "");
+			for (int i = 0; i < trees.size(); i++) {
+				// AbstractScript.log("" + trees.get(i).getTile());
 			}
 			firstRun = false;
 		}
@@ -81,8 +83,9 @@ public class Chop extends Node {
 									|| script.getLocalPlayer().isInCombat() || !script.getLocalPlayer().isAnimating(),
 							Calculations.random(100000, 150000));
 					AbstractScript.sleep(Calculations.random(250, 750));
-					if(!tree.exists()) {
-						//AbstractScript.log("Added a tree we just cut down to the respawn queue.");
+					if (!tree.exists()) {
+						// AbstractScript.log("Added a tree we just cut down to
+						// the respawn queue.");
 						treeQueue.add(tree);
 					}
 				} else {
@@ -92,17 +95,22 @@ public class Chop extends Node {
 				// tree disappeared before I got there!
 			}
 		} else {
-			//AbstractScript.log("trees size: " + trees.size() + "    trees queue: " + treeQueue.size());
+			// AbstractScript.log("trees size: " + trees.size() + " trees queue:
+			// " + treeQueue.size());
 			if (script.getSettings().getWorldHopIfNoTrees()) {
 				script.setWorldHop(true);
 			} else if (treeQueue.size() >= trees.size()) {
-				while(treeQueue.size() > trees.size()) {
-					treeQueue.remove(); //prevents buildup to like a queue of 5 then rapid clicking both locations
-										//until its down to treeQueue.size() < trees.size()
+				while (treeQueue.size() > trees.size()) {
+					treeQueue.remove(); // prevents buildup to like a queue of 5
+										// then rapid clicking both locations
+										// until its down to treeQueue.size() <
+										// trees.size()
 				}
-				//now the queue and the amount of trees should be the same
-				//AbstractScript.log("Walking to next tree to respawn, probably.");
-				script.getWalking().walk(treeQueue.remove().getSurroundingArea(1).getNearestTile(script.getLocalPlayer()));
+				// now the queue and the amount of trees should be the same
+				// AbstractScript.log("Walking to next tree to respawn,
+				// probably.");
+				script.getWalking()
+						.walk(treeQueue.remove().getSurroundingArea(1).getNearestTile(script.getLocalPlayer()));
 			}
 		}
 	}

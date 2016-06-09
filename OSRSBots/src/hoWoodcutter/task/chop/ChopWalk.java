@@ -26,7 +26,7 @@ public class ChopWalk extends Node {
 
 	@Override
 	public void execute() {
-		if (script.getWalking()	.walk(script.getSettings().getLocations().getTreeArea().getArea().getRandomTile())) {
+		if (script.getWalking().walk(script.getSettings().getLocations().getTreeArea().getArea().getRandomTile())) {
 			AbstractScript.sleep(Calculations.random(650, 850));
 			// buffer so it doesn't double click before movement starts
 			AbstractScript.sleepUntil(() -> !script.getLocalPlayer().isMoving(), Calculations.random(3000, 5000));
