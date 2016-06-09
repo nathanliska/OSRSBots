@@ -6,9 +6,18 @@ import java.net.URL;
 
 public class GExchange {
 
+	/*
+	 * BufferedReader for reading text from the API.
+	 * StringBuffer for appending the characters in the API into a string no longer than 1024 chars.
+	 */
 	private static BufferedReader bReader;
 	private static StringBuffer buffer;
 
+	/*
+	 * Returns a string of JSON containing information about the item from the URL.
+	 * 
+	 * PARSE AT YOUR OWN WILL.
+	 */
 	private static String getData(int itemID) {
 		try {
 			buffer = new StringBuffer();
