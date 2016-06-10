@@ -11,8 +11,8 @@ public class GExchange {
 	 * the characters in the API into a string no longer than 1024 chars.
 	 */
 	private static BufferedReader bReader;
-	private static StringBuffer buffer;
-
+	private static StringBuilder sBuilder;
+	
 	/*
 	 * Returns a string of JSON containing information about the item from the
 	 * URL.
@@ -21,7 +21,7 @@ public class GExchange {
 	 */
 	private static String getData(int itemID) {
 		try {
-			buffer = new StringBuffer();
+			sBuilder = new StringBuilder();
 			int read;
 			char[] chars = new char[1024];
 			URL url = new URL(
@@ -29,10 +29,10 @@ public class GExchange {
 			bReader = new BufferedReader(new InputStreamReader(url.openStream()));
 
 			while ((read = bReader.read(chars)) != -1) {
-				buffer.append(chars, 0, read);
+				sBuilder.append(chars, 0, read);
 			}
 
-			return buffer.toString();
+			return sBuilder.toString();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
